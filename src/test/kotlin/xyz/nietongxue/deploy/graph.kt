@@ -1,6 +1,11 @@
 package xyz.nietongxue.deploy
 
-import xyz.nietongxue.common.graph.*
+import xyz.nietongxue.common.base.Id
+import xyz.nietongxue.common.base.Name
+import xyz.nietongxue.common.base.v7
+import xyz.nietongxue.common.graph.BaseEdge
+import xyz.nietongxue.common.graph.BaseGraph
+import xyz.nietongxue.common.graph.BaseNode
 
 
 class Deployment : BaseGraph() {

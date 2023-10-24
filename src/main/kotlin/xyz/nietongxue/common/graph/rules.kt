@@ -1,5 +1,7 @@
 package xyz.nietongxue.common.graph
 
+import xyz.nietongxue.common.base.Name
+
 
 /*
 1. node types

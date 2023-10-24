@@ -2,6 +2,9 @@ package xyz.nietongxue.common.processing
 
 import arrow.core.*
 
+
+
+
 typealias Processing<L, E, A> = Pair<List<L>, EitherNel<E, A>>
 typealias ProcessingSuc<L,A> = Pair<List<L>,Either.Right<A>>
 

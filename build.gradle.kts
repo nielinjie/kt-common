@@ -15,7 +15,8 @@ repositories {
 
 dependencies {
 
-    implementation("com.benasher44:uuid:0.7.0")
+    implementation("app.softwork:kotlinx-uuid-core:0.0.21")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
 
 
     implementation("com.fasterxml.jackson.core:jackson-core:2.15.3")

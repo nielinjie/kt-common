@@ -1,10 +1,7 @@
 package xyz.nietongxue.common.graph
 
-import java.util.*
-
-
-typealias Id = UUID
-typealias Name = String
+import xyz.nietongxue.common.base.Id
+import xyz.nietongxue.common.base.Name
 
 
 interface HasId {
