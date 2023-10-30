@@ -3,10 +3,8 @@ package xyz.nietongxue.common.processing
 import arrow.core.*
 
 
-
-
 typealias Processing<L, E, A> = Pair<List<L>, EitherNel<E, A>>
-typealias ProcessingSuc<L,A> = Pair<List<L>,Either.Right<A>>
+typealias ProcessingSuc<L, A> = Pair<List<L>, Either.Right<A>>
 
 fun <L, E, A> bind(a: A): Processing<L, E, A> = emptyList<L>() to a.right()
 
@@ -32,7 +30,8 @@ fun <L, E, A, E2> Processing<L, E, A>.mapError(fn: (E) -> E2): Processing<L, E2,
         it.map(fn)
     }
 }
-fun <L,E,A,L2,E2> Processing<L,E,A> .toNextStep(fl:(L)->L2,fe:(E)->E2):Processing<L2,E2,A>{
+
+fun <L, E, A, L2, E2> Processing<L, E, A>.toNextStep(fl: (L) -> L2, fe: (E) -> E2): Processing<L2, E2, A> {
     return this.keepLog(fl).mapError(fe)
 }
 
@@ -43,6 +42,7 @@ fun <L, E, A> Processing<L, E, A>.withLog(log: L): Processing<L, E, A> {
 
 fun <L, E, A> resultAndLog(a: A, log: L): Processing<L, E, A> = listOf(log) to a.right()
 fun <L, E, A> errorAndLog(e: E, log: L): Processing<L, E, A> = listOf(log) to (e).nel().left()
+fun <L, E, A> justError(e: E): Processing<L, E, A> = emptyList<L>() to e.nel().left()
 
 class ProcessingScope<L, E, A>() {
     var current = bind<L, E, A>(null as A)

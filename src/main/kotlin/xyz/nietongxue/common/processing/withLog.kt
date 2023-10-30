@@ -1,6 +1,8 @@
 package xyz.nietongxue.common.processing
 
+import xyz.nietongxue.common.base.Record
 import xyz.nietongxue.common.log.Log
-import xyz.nietongxue.common.validate.ValidateResult
 
-typealias ProcessingWithLog<V> = Processing<Log, ValidateResult, V>
+
+typealias StopResult<L> = Record<L>
+typealias ProcessingWithLog<V,L> = Processing<Log<L>, StopResult<L>, V>

@@ -6,8 +6,9 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class RecordTest: StringSpec({
+    //FIXME, error context is in message objects, test serialization of that
     "serializable string"{
-        val record = Record("message",data = "data")
+        val record = Record("message")
         println(record)
         val string = Json.encodeToString(record)
         println(string)
@@ -15,10 +16,10 @@ class RecordTest: StringSpec({
         record shouldBe re2
     }
     "serializable jsonWrapper"{
-        val record = Record("message",data = JsonWrapper("typeInfo","jsonString"))
+        val record = Record("message")
         println(record)
         val string = Json.encodeToString(record)
-        val re2 = Json.decodeFromString<Record<JsonWrapper>>(string)
+        val re2 = Json.decodeFromString<Record<String>>(string)
 
         println(string)
         record shouldBe re2

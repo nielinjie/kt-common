@@ -1,45 +1,69 @@
 package xyz.nietongxue.deploy
 
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
-import xyz.nietongxue.common.graph.NoSuchPortException
-import xyz.nietongxue.common.graph.WrongConnectionException
+import xyz.nietongxue.common.graph.*
+import xyz.nietongxue.common.processing.Assemble
+import xyz.nietongxue.common.processing.shouldErr
+import xyz.nietongxue.common.processing.shouldSuccess
 
 /**
- * node by name
+ * typing node by property value
  *
  */
 
 class ByNameTest : StringSpec({
     "aps and db" {
-        val aps = Service()
-        val db = Service()
-        val edge = Reference(aps.id, db.id, "db")
-        val deployment = Deployment()
-        deployment.node(aps)
-        deployment.node(db)
-        deployment.edge(edge)
+        val aps = Service(serviceType = "aps")
+        val assemble = Assemble<Deployment, GraphLog>(Deployment(), emptyList())
+        assemble.apply(AddNode(aps))
+        val re = assemble.finish()
+        re.shouldSuccess()
     }
+    "aps and db with number" {
+        val aps = Service(serviceType = "aps")
+        val aps2 = Service(serviceType = "aps")
+        val rules = listOf(
+            NodeQuantifierRule(ServiceTypeSelector("aps"), Quantifier.One),
+        )
+        val assemble = Assemble(Deployment(), rules)
+        assemble.apply(AddNode(aps))
+        val re = assemble.finish()
+        re.shouldSuccess()
+    }
+    "aps and db with number wrong" {
+        val aps = Service(serviceType = "aps")
+        val aps2 = Service(serviceType = "aps")
+        val rules = listOf(
+            NodeQuantifierRule<Deployment>(ServiceTypeSelector("aps"), Quantifier.One)
+        )
+        val assemble = Assemble(Deployment(), rules)
+        assemble.apply(AddNode(aps))
+        assemble.apply(AddNode(aps2))
+        val re = assemble.finish()
+        re.shouldErr(StringLog("NodeQuantifierRule failed"))
+    }
+
     "wrong port" {
-        val aps = Service()
-        val db = Service()
-        val edge = Reference(aps.id, db.id, "cache")
-        val deployment = Deployment()
-        deployment.node(aps)
-        deployment.node(db)
-        shouldThrow<NoSuchPortException> {
-            deployment.edge(edge)
-        }
+        val aps = Service(serviceType = "aps")
+        val cache = Service(serviceType = "cache")
+        val db = Service(serviceType = "db")
+        val assemble = DeploymentAssemble()
+        assemble.apply(AddNode(aps))
+        assemble.apply(AddNode(cache))
+        assemble.apply(AddNode(db))
+        assemble.apply(Connect(Reference(aps.id, "cache", db.id)))
+        assemble.finish().shouldErr(StringLog("NodePortRule failed"))
     }
-    "can not connect wrong" {
-        val aps = Service()
-        val db = Service()
-        val edge = Reference(aps.id, db.id, "cache")
-        val deployment = Deployment()
-        deployment.node(aps)
-        deployment.node(db)
-        shouldThrow<WrongConnectionException> {
-            deployment.edge(edge)
-        }
+    "can not connect to wrong target" {
+        val aps = Service(serviceType = "aps")
+        val cache = Service(serviceType = "cache")
+        val db = Service(serviceType = "db")
+        val assemble = DeploymentAssemble()
+        assemble.apply(AddNode(aps))
+        assemble.apply(AddNode(cache))
+        assemble.apply(AddNode(db))
+        assemble.apply(Connect(Reference(aps.id, "db", cache.id)))
+        assemble.finish().shouldErr(StringLog("ConnectionTargetRule failed"))
     }
+
 })
