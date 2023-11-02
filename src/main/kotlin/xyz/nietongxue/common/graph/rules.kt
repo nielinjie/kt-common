@@ -1,7 +1,8 @@
 package xyz.nietongxue.common.graph
 
 import xyz.nietongxue.common.base.Name
-import xyz.nietongxue.common.base.Selector
+import xyz.nietongxue.common.base.Quantifier
+import xyz.nietongxue.common.graph.selectors.NodeSelector
 import xyz.nietongxue.common.processing.*
 
 
@@ -15,50 +16,8 @@ import xyz.nietongxue.common.processing.*
 
 
 
-sealed interface Quantifier {
-    fun match(number: Int): Boolean
-    data class Many(val number: Int?) : Quantifier {
-        override fun match(number: Int): Boolean {
-            return this.number?.let { number == it } ?: (number > 1)
-        }
-    }
 
-    data object One : Quantifier {
-        override fun match(number: Int): Boolean {
-            return number == 1
-        }
-    }
 
-    data object ZeroOrOne : Quantifier {
-        override fun match(number: Int): Boolean {
-            return number in 0..1
-        }
-    }
-
-    data object OneOrMore : Quantifier {
-        override fun match(number: Int): Boolean {
-            return number >= 1
-        }
-    }
-
-    data object ZeroOrMany : Quantifier {
-        override fun match(number: Int): Boolean {
-            return true
-        }
-    }
-}
-
-interface NodeSelector<V : Graph> : Selector<Node, V>
-interface EdgeSelector<V : Graph> : Selector<Edge, V>
-open class EdgeByNodeAndPortSelector<V : Graph>(val nodeSelector: NodeSelector<V>, val portName: Name) :
-    EdgeSelector<V> {
-    override fun select(input: List<Edge>, context: V): List<Edge> {
-        val nodes = nodeSelector.select(context.nodes(), context)
-        return input.filter { edge ->
-            nodes.any { it.id == edge.from } && edge.on == portName
-        }
-    }
-}
 
 open class NodeQuantifierRule<V : BaseGraph>(val nodes: NodeSelector<V>, val quantifier: Quantifier) :
     Rule<V, GraphLog> {
@@ -73,11 +32,6 @@ open class NodeQuantifierRule<V : BaseGraph>(val nodes: NodeSelector<V>, val qua
 
 }
 
-interface GraphLog {
-
-}
-
-data class StringLog(val s: String) : GraphLog
 
 class NodePortRule<V : BaseGraph>(val sourceSelector: NodeSelector<V>, val portNames: List<Name>) : Rule<V, GraphLog> {
     override fun check(value: V, phase: AssemblePhase): ProcessingWithLog<V, GraphLog> {

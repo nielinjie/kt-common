@@ -54,4 +54,21 @@ class ProcessingScopeTest : StringSpec({
             it.second shouldBe 2.0.right()
         }
     }
+    "with throwing"{
+        val one = bind<String, String, Double>(1.0)
+        fun stupidAdd(a:Double,b:Double):Double{
+            error("no clear enough")
+        }
+        val added = processing<String, String, Double> {
+            tryRun({it.message }) {
+                one.bind()
+                log("added 1")
+                stupidAdd(1.0,1.0).done()
+            }
+        }
+        added.current.let {
+            it.first shouldBe listOf("added 1")
+            it.second shouldBe (("no clear enough").nel()).left()
+        }
+    }
 })

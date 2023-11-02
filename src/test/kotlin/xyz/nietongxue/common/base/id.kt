@@ -9,6 +9,7 @@ import kotlinx.uuid.UUIDv7
 class IdTest : StringSpec({
     "id bug" {
         repeat(10) {
+            Thread.sleep(2)
             val long = Clock.System.now().toEpochMilliseconds()
             val id = UUIDv7(long)
             println(id)

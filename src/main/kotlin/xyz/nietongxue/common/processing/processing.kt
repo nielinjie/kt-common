@@ -50,6 +50,14 @@ class ProcessingScope<L, E, A>() {
         this.current = current.withLog(log)
     }
 
+    fun tryRun(exFn: (Throwable) -> E?, fn: () -> Unit): Unit {
+        try {
+            fn()
+        } catch (e: Throwable) {
+            exFn(e)?.also { this.error(it) }
+        }
+    }
+
     fun error(e: E): Unit {
         this.current = current.flatMap { emptyList<L>() to e.nel().left() }
     }
@@ -64,6 +72,12 @@ class ProcessingScope<L, E, A>() {
         when (this.current.second) {
             is Either.Left -> onError().raise()
             is Either.Right -> onValue((this.current.second as Either.Right<A>).value)
+        }
+    }
+
+    fun Throwable.raise(exFn: (Throwable) -> E?): Unit {
+        exFn(this)?.also {
+            it.raise()
         }
     }
 
@@ -86,6 +100,13 @@ class ProcessingScope<L, E, A>() {
 
 fun <L, E, A> processing(fn: ProcessingScope<L, E, A>.() -> Unit): ProcessingScope<L, E, A> {
     val re = ProcessingScope<L, E, A>()
+    re.also(fn)
+    return re
+}
+
+fun <L, E, A> processing(a: A, fn: ProcessingScope<L, E, A>.() -> Unit): ProcessingScope<L, E, A> {
+    val re = ProcessingScope<L, E, A>()
+    re.current = bind(a)
     re.also(fn)
     return re
 }

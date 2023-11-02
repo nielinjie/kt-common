@@ -2,7 +2,6 @@ plugins {
     kotlin("jvm") version "1.9.0"
     id("maven-publish")
     kotlin("plugin.serialization") version "1.9.0"
-
 }
 
 group = "xyz.nietongxue"
@@ -15,7 +14,7 @@ repositories {
 
 dependencies {
 
-    implementation("app.softwork:kotlinx-uuid-core:0.0.21")
+    implementation("app.softwork:kotlinx-uuid-core:0.0.22")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
 
 
@@ -41,6 +40,13 @@ tasks.test {
     useJUnitPlatform()
 }
 
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+        }
+    }
+}
 kotlin {
     jvmToolchain(17)
 }

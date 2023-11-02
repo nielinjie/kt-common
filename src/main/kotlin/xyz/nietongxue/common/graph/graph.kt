@@ -1,12 +1,12 @@
 package xyz.nietongxue.common.graph
 
+import xyz.nietongxue.common.base.HasId
+import xyz.nietongxue.common.base.HasName
 import xyz.nietongxue.common.base.Id
 import xyz.nietongxue.common.base.Name
 
 
-interface HasId {
-    val id: Id
-}
+
 
 interface Graph {
     fun nodes(): List<Node>
@@ -18,9 +18,6 @@ interface Node : HasId {
 
 interface Port : HasName
 
-interface HasName {
-    val name: Name
-}
 
 interface Edge {
     val from: Id
@@ -32,13 +29,7 @@ interface Edge {
 open class BaseGraph : Graph {
     val nodes = mutableListOf<Node>()
     val edges = mutableListOf<Edge>()
-    fun node(node: BaseNode) {
-        nodes.add(node)
-    }
 
-    fun edge(edge: BaseEdge) {
-        edges.add(edge)
-    }
 
     override fun nodes(): List<Node> {
         return this.nodes
