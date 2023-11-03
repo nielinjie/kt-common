@@ -14,7 +14,7 @@ import xyz.nietongxue.common.processing.shouldSuccess
 class ByNameTest : StringSpec({
     "aps and db" {
         val aps = Service(serviceType = "aps")
-        val assemble = Assemble<Deployment, GraphLog>(Deployment(), emptyList())
+        val assemble = Assemble<Deployment, GraphLogData>(Deployment(), emptyList())
         assemble.apply(AddNode(aps))
         val re = assemble.finish()
         re.shouldSuccess()
@@ -40,7 +40,7 @@ class ByNameTest : StringSpec({
         assemble.apply(AddNode(aps))
         assemble.apply(AddNode(aps2))
         val re = assemble.finish()
-        re.shouldErr(StringLog("NodeQuantifierRule failed"))
+        re.shouldErr(StringLogData("NodeQuantifierRule failed"))
     }
 
     "wrong port" {
@@ -52,7 +52,7 @@ class ByNameTest : StringSpec({
         assemble.apply(AddNode(cache))
         assemble.apply(AddNode(db))
         assemble.apply(Connect(Reference(aps.id, "cache", db.id)))
-        assemble.finish().shouldErr(StringLog("NodePortRule failed"))
+        assemble.finish().shouldErr(StringLogData("NodePortRule failed"))
     }
     "can not connect to wrong target" {
         val aps = Service(serviceType = "aps")
@@ -63,7 +63,7 @@ class ByNameTest : StringSpec({
         assemble.apply(AddNode(cache))
         assemble.apply(AddNode(db))
         assemble.apply(Connect(Reference(aps.id, "db", cache.id)))
-        assemble.finish().shouldErr(StringLog("ConnectionTargetRule failed"))
+        assemble.finish().shouldErr(StringLogData("ConnectionTargetRule failed"))
     }
 
 })

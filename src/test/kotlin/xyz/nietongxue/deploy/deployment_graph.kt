@@ -30,7 +30,7 @@ class ServiceTypeQualityRule(type: String, quantifier: Quantifier) :
     NodeQuantifierRule<Deployment>(ServiceTypeSelector(type), quantifier)
 
 
-class DeploymentAssemble : Assemble<Deployment, GraphLog>(
+class DeploymentAssemble : Assemble<Deployment, GraphLogData>(
     Deployment(), listOf(
         ServiceTypeQualityRule("aps", One),
         ServiceTypeQualityRule("db", One),

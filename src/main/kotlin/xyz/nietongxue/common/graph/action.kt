@@ -1,40 +1,61 @@
 package xyz.nietongxue.common.graph
 
+import xyz.nietongxue.common.base.Record
 import xyz.nietongxue.common.graph.selectors.NodeSelector
 import xyz.nietongxue.common.processing.*
 
-data class AddNode<V : BaseGraph, L : GraphLog>(val node: Node) : Action<V, L> {
-    override fun action(): Reducer<V, L> {
+data class AddNode<V : BaseGraph>(val node: Node) : Action<V, GraphLogData> {
+    override fun action(): Reducer<V, GraphLogData> {
         return { graph ->
             graph.nodes.add(node as BaseNode)
-            bind(graph)
+            resultAndLog(graph, Record(StringLogData("AddNode ${node.id}")))
         }
     }
 }
 
-data class Connect<V : BaseGraph, L : GraphLog>(val edge: Edge) : Action<V, L> {
-    override fun action(): Reducer<V, L> {
+data class Connect<V : BaseGraph>(val edge: Edge) : Action<V, GraphLogData> {
+    override fun action(): Reducer<V, GraphLogData> {
         return { graph ->
             graph.edges.add(edge)
-            bind(graph)
+            resultAndLog(graph, Record(StringLogData("Connect ${edge.from} to ${edge.to}")))
         }
     }
 }
 
-data class UpdateNode<V : BaseGraph>(val selector: NodeSelector<V>, val nodeUpdater: (Node?) -> Node) :
-    Action<V, GraphLog> {
-    override fun action(): Reducer<V, GraphLog> {
+data class UpdateNode<V : BaseGraph>(
+    val selector: NodeSelector<V>,
+    val allowMultiMatch: Boolean = false,
+    val nodeUpdater: (Node?) -> Node,
+) :
+    Action<V, GraphLogData> {
+    override fun action(): Reducer<V, GraphLogData> {
         return { graph ->
             val nodes = selector.select(graph.nodes(), graph)
-            if (nodes.size > 1) {
-                justError(StopResult(StringLog("UpdateNode failed: selector ${selector} matched ${nodes.size} nodes")))
-            } else {
-                val node = nodes.firstOrNull()
-                val newNode = nodeUpdater(node)
-                if (node != null)
-                    graph.nodes.remove(node)
-                graph.nodes.add(newNode)
-                bind(graph)
+            when (allowMultiMatch) {
+                false -> {
+                    if (nodes.size > 1) {
+                        justError(StopResult(StringLogData("UpdateNode failed: selector ${selector} matched ${nodes.size} nodes")))
+                    } else {
+                        val node = nodes.firstOrNull()
+                        val newNode = nodeUpdater(node)
+                        if (node != null)
+                            graph.nodes.remove(node)
+                        graph.nodes.add(newNode)
+                        resultAndLog(graph, Record(StringLogData("UpdateNode ${node?.id}")))
+                    }
+                }
+
+                else -> {
+                    val b: ProcessingWithLog<V, GraphLogData> = bind(graph)
+                    (nodes.fold(b) { acc, node ->
+                        val newNode = nodeUpdater(node)
+                        acc.flatMap {
+                            it.nodes.remove(node)
+                            it.nodes.add(newNode)
+                            bind(it)
+                        }
+                    }).withLog(("UpdateNodes ${nodes.map { it.id }}").log())
+                }
             }
         }
     }

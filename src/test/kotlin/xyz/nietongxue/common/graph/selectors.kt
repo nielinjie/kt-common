@@ -3,6 +3,10 @@ package xyz.nietongxue.common.graph
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import xyz.nietongxue.common.base.v7
+import xyz.nietongxue.common.graph.selectors.edgeByPortAndTarget
+import xyz.nietongxue.common.graph.selectors.edgeBySourceAndPort
+import xyz.nietongxue.common.graph.selectors.nodeSelector
+import xyz.nietongxue.common.graph.selectors.nodeById
 
 class SelectorsTest : StringSpec({
 
@@ -18,7 +22,7 @@ class SelectorsTest : StringSpec({
         nodes.size shouldBe 1
     }
     "node id selector"{
-        val selector = nodeById(node1.id)
+        val selector = nodeById<BaseGraph>(node1.id)
         val nodes = selector.select(graph.nodes,graph)
         nodes.size shouldBe 1
     }

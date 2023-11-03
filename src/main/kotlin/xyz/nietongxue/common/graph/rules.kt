@@ -20,28 +20,28 @@ import xyz.nietongxue.common.processing.*
 
 
 open class NodeQuantifierRule<V : BaseGraph>(val nodes: NodeSelector<V>, val quantifier: Quantifier) :
-    Rule<V, GraphLog> {
-    override fun check(value: V, phase: AssemblePhase): ProcessingWithLog<V, GraphLog> {
+    Rule<V, GraphLogData> {
+    override fun check(value: V, phase: AssemblePhase): ProcessingWithLog<V, GraphLogData> {
         val number = nodes.select(value.nodes(), value).size
         return if (quantifier.match(number)) {
             bind(value)
         } else {
-            justError(StopResult(StringLog("NodeQuantifierRule failed")))
+            justError(StopResult(StringLogData("NodeQuantifierRule failed")))
         }
     }
 
 }
 
 
-class NodePortRule<V : BaseGraph>(val sourceSelector: NodeSelector<V>, val portNames: List<Name>) : Rule<V, GraphLog> {
-    override fun check(value: V, phase: AssemblePhase): ProcessingWithLog<V, GraphLog> {
+class NodePortRule<V : BaseGraph>(val sourceSelector: NodeSelector<V>, val portNames: List<Name>) : Rule<V, GraphLogData> {
+    override fun check(value: V, phase: AssemblePhase): ProcessingWithLog<V, GraphLogData> {
         val sourceNodes = sourceSelector.select(value.nodes(), value)
         sourceNodes.forEach {
             val connections = value.connections(it.id)
             if (!connections.all { connection ->
                     portNames.contains(connection.on)
                 }) {
-                return justError(StopResult(StringLog("NodePortRule failed")))
+                return justError(StopResult(StringLogData("NodePortRule failed")))
             }
         }
         return bind(value)
@@ -54,15 +54,15 @@ class ConnectionTargetRule<V : BaseGraph>(
     val portName: Name,
     val targetSelector: NodeSelector<V>
 ) :
-    Rule<V, GraphLog> {
-    override fun check(value: V, phase: AssemblePhase): ProcessingWithLog<V, GraphLog> {
+    Rule<V, GraphLogData> {
+    override fun check(value: V, phase: AssemblePhase): ProcessingWithLog<V, GraphLogData> {
         val sourceNodes = sourceSelector.select(value.nodes(), value)
         sourceNodes.forEach {
             val connections = value.connections(it.id, portName)
             connections.forEach { connection ->
                 val targetNodes = targetSelector.select(value.nodes(), value)
                 if (!targetNodes.any { it.id == connection.to }) {
-                    return@check justError(StopResult(StringLog("ConnectionTargetRule failed")))
+                    return@check justError(StopResult(StringLogData("ConnectionTargetRule failed")))
                 }
             }
         }
@@ -75,13 +75,13 @@ open class ConnectionQualityRule<V : BaseGraph>(
     val portName: Name,
     val quantifier: Quantifier
 ) :
-    Rule<V, GraphLog> {
-    override fun check(value: V, phase: AssemblePhase): ProcessingWithLog<V, GraphLog> {
+    Rule<V, GraphLogData> {
+    override fun check(value: V, phase: AssemblePhase): ProcessingWithLog<V, GraphLogData> {
         val sourceNodes = sourceSelector.select(value.nodes(), value)
         sourceNodes.forEach {
             val connections = value.connections(it.id, portName)
             if (!quantifier.match(connections.size)) {
-                return@check justError(StopResult(StringLog("ConnectionQualityRule failed")))
+                return@check justError(StopResult(StringLogData("ConnectionQualityRule failed")))
             }
         }
         return bind(value)

@@ -1,11 +1,10 @@
 package xyz.nietongxue.common.graph
 
-import xyz.nietongxue.common.graph.selectors.NodeSelector
-import xyz.nietongxue.common.processing.*
+import xyz.nietongxue.common.base.Record
 
 
-
-interface GraphLog {
+interface GraphLogData {
 
 }
-data class StringLog(val s: String) : GraphLog
+data class StringLogData(val s: String) : GraphLogData
+fun String.log() = Record(StringLogData(this))

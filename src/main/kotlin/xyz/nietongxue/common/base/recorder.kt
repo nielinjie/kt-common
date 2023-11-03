@@ -4,7 +4,7 @@ import kotlinx.datetime.Clock
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Record<M>(
+data class Record<out M>(
     val message: M,
     val level: LogLevel = LogLevel.INFO,
     val id: Id = v7(),
