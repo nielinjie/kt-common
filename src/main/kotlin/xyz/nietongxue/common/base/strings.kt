@@ -53,6 +53,11 @@ fun String.atMostMiddle(n: Int): String {
         this.take(half) + "..." + this.takeLast(half)
     } else this
 }
+fun String.atMostStart(n:Int):String{
+    return if(this.length>n){
+        "..." + this.takeLast(n)
+    }else this
+}
 
 fun String.startBy(s: String): String? {
     return if (this.startsWith(s))
