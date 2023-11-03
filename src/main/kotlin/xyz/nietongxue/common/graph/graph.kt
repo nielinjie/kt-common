@@ -39,16 +39,22 @@ open class BaseGraph : Graph {
         return this.edges
     }
 
-    fun connections(nodeId: Id): List<Edge> {
+    fun edges(nodeId: Id): List<Edge> {
         return nodes.find { it.id == nodeId }?.let { node ->
             edges.filter { it.from == node.id }
         } ?: emptyList()
     }
 
-    fun connections(nodeId: Id, portName: Name): List<Edge> {
-        return connections(nodeId).filter {
+    fun edges(nodeId: Id, portName: Name): List<Edge> {
+        return edges(nodeId).filter {
             it.on == portName
         }
+    }
+    fun node(id:Id):Node?{
+        return nodes.find { it.id==id }
+    }
+    fun edge(from:Id, on:Name, to:Id):Edge?{
+        return edges.find { it.from==from && it.on==on && it.to==to }
     }
 }
 

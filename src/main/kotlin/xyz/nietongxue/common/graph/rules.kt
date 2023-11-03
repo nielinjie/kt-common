@@ -37,7 +37,7 @@ class NodePortRule<V : BaseGraph>(val sourceSelector: NodeSelector<V>, val portN
     override fun check(value: V, phase: AssemblePhase): ProcessingWithLog<V, GraphLogData> {
         val sourceNodes = sourceSelector.select(value.nodes(), value)
         sourceNodes.forEach {
-            val connections = value.connections(it.id)
+            val connections = value.edges(it.id)
             if (!connections.all { connection ->
                     portNames.contains(connection.on)
                 }) {
@@ -58,7 +58,7 @@ class ConnectionTargetRule<V : BaseGraph>(
     override fun check(value: V, phase: AssemblePhase): ProcessingWithLog<V, GraphLogData> {
         val sourceNodes = sourceSelector.select(value.nodes(), value)
         sourceNodes.forEach {
-            val connections = value.connections(it.id, portName)
+            val connections = value.edges(it.id, portName)
             connections.forEach { connection ->
                 val targetNodes = targetSelector.select(value.nodes(), value)
                 if (!targetNodes.any { it.id == connection.to }) {
@@ -79,7 +79,7 @@ open class ConnectionQualityRule<V : BaseGraph>(
     override fun check(value: V, phase: AssemblePhase): ProcessingWithLog<V, GraphLogData> {
         val sourceNodes = sourceSelector.select(value.nodes(), value)
         sourceNodes.forEach {
-            val connections = value.connections(it.id, portName)
+            val connections = value.edges(it.id, portName)
             if (!quantifier.match(connections.size)) {
                 return@check justError(StopResult(StringLogData("ConnectionQualityRule failed")))
             }
