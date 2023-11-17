@@ -16,6 +16,7 @@ class Service(override val id: Id = v7(), val serviceType: String) : BaseNode(id
 class Reference(from: Id, on: Name, to: Id) : BaseEdge(from, on, to)
 
 
+
 object ServiceTypes : Types<Service> {
     val aps = object : Type<Service> {
         override val name: Path = Path.fromString("aps")
@@ -40,7 +41,7 @@ object ServiceTypes : Types<Service> {
     )
 }
 
-data class ServiceTypeSelector(val type: Type<Service>) : NodeSelector<Deployment> {
+class ServiceTypeSelector(val type: Type<Service>) : NodeSelector<Deployment> {
     override fun select(input: List<Node>, context: Deployment): List<Node> {
         return input.filter {
             when (it) {
