@@ -19,6 +19,9 @@ data class Path(val parts: List<Name>) {
 
     fun parent() = Path(this.parts.subList(0, this.parts.size - 1))
     fun shortName(): String = parts.last()
+    fun packageAndName() = PackageAndName(this)
 }
-
-data class RL(val path:Path,val scope:Path =Path.zero)
+class PackageAndName(val path: Path){
+    val name = path.shortName()
+    val packageName = path.parent()
+}
