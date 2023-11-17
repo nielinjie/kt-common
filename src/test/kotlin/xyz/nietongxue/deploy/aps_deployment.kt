@@ -24,7 +24,7 @@ class ByNameTest : StringSpec({
         val aps = Service(serviceType = "aps")
         val aps2 = Service(serviceType = "aps")
         val rules = listOf(
-            NodeQuantifierRule(ServiceTypeSelector("aps"), Quantifier.One),
+            NodeQuantifierRule(ServiceTypeSelector(ServiceTypes.aps), Quantifier.One),
         )
         val assemble = Assemble(Deployment(), rules)
         assemble.apply(AddNode(aps))
@@ -35,7 +35,7 @@ class ByNameTest : StringSpec({
         val aps = Service(serviceType = "aps")
         val aps2 = Service(serviceType = "aps")
         val rules = listOf(
-            NodeQuantifierRule<Deployment>(ServiceTypeSelector("aps"), Quantifier.One)
+            NodeQuantifierRule<Deployment>(ServiceTypeSelector(ServiceTypes.aps), Quantifier.One)
         )
         val assemble = Assemble(Deployment(), rules)
         assemble.apply(AddNode(aps))
