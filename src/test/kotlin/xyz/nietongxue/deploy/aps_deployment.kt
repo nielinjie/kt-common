@@ -1,6 +1,7 @@
 package xyz.nietongxue.deploy
 
 import io.kotest.core.spec.style.StringSpec
+import xyz.nietongxue.common.base.Quantifier
 import xyz.nietongxue.common.graph.*
 import xyz.nietongxue.common.processing.Assemble
 import xyz.nietongxue.common.processing.shouldErr

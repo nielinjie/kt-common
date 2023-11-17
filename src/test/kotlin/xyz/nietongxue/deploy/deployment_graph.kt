@@ -2,9 +2,10 @@ package xyz.nietongxue.deploy
 
 import xyz.nietongxue.common.base.Id
 import xyz.nietongxue.common.base.Name
+import xyz.nietongxue.common.base.Quantifier
 import xyz.nietongxue.common.base.v7
 import xyz.nietongxue.common.graph.*
-import xyz.nietongxue.common.graph.Quantifier.One
+import xyz.nietongxue.common.graph.selectors.NodeSelector
 import xyz.nietongxue.common.processing.Assemble
 
 
@@ -32,11 +33,11 @@ class ServiceTypeQualityRule(type: String, quantifier: Quantifier) :
 
 class DeploymentAssemble : Assemble<Deployment, GraphLogData>(
     Deployment(), listOf(
-        ServiceTypeQualityRule("aps", One),
-        ServiceTypeQualityRule("db", One),
-        ServiceTypeQualityRule("cache", One),
+        ServiceTypeQualityRule("aps", Quantifier.One),
+        ServiceTypeQualityRule("db", Quantifier.One),
+        ServiceTypeQualityRule("cache", Quantifier.One),
         NodePortRule(ServiceTypeSelector("aps"), listOf("db")),
         ConnectionTargetRule(ServiceTypeSelector("aps"), "db", ServiceTypeSelector("db")),
-        ConnectionQualityRule(ServiceTypeSelector("aps"), "db", One)
+        ConnectionQualityRule(ServiceTypeSelector("aps"), "db", Quantifier.One)
     )
 )

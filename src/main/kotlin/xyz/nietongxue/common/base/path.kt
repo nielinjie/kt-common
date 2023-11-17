@@ -1,13 +1,13 @@
 package xyz.nietongxue.common.base
 
 
-data class Path(val parts: List<String>) {
+data class Path(val parts: List<Name>) {
     companion object {
         val zero = Path(emptyList())
         fun fromString(path: String) = Path(path.split("/").filter { it.isNotBlank() })
     }
 
-    fun append(part: String) = this.append(
+    fun append(part: Name) = this.append(
         fromString(part)
     )
 
