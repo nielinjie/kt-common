@@ -5,18 +5,20 @@ interface Coordinate {
     val dimensions: List<Dimension>
 }
 
-interface Location<D : Dimension> {
-    val values: List<Value<D>>
+interface Location {
+    val values: List<Value>
 }
 
-interface Selector<D : Dimension> {
-    val predicates: List<Predicate<D>>
-    fun select(points: List<Location<D>>): List<Location<D>> {
+interface Selector {
+    val predicates: List<Predicate>
+    fun select(points: List<Location>): List<Location> {
         return points.filter { point ->
             predicates.all { predicate ->
-                point.values.any { value ->
-                    //TODO 这里好像是错的，没有考虑维度的限制。
-                    predicate.test(value)
+                val thisDimensionValue = point.values.find { it.dimension == predicate.dimension }
+                if (thisDimensionValue == null) {
+                    error("dimension not found")
+                } else {
+                    predicate.test(thisDimensionValue)
                 }
             }
         }
@@ -24,11 +26,18 @@ interface Selector<D : Dimension> {
 }
 
 interface Dimension
-interface Value<out D : Dimension> {
-    val dimension: D
+interface Value {
+    val dimension: Dimension
 }
 
-interface Predicate<D : Dimension> {
-    fun test(value: Value<D>): Boolean
+interface Predicate {
+    fun test(value: Value): Boolean
+    val dimension: Dimension
 }
 
+open class NumberDimension<T : Number>(val name: String) : Dimension
+open class CategoryDimension<A>(val name: String, val categories:List<A>) : Dimension
+open class SeqDimension<A>(val name: String,val seq:Sequence<A>) : Dimension
+
+open class NumberValue<T : Number>(override val dimension: NumberDimension<T>, val d: T) : Value
+open class CategoryValue<A>(override val dimension: CategoryDimension<A>, val d: String) : Value
