@@ -6,64 +6,51 @@ import io.kotest.matchers.collections.shouldHaveSize
 
 object XYCoordinate : Coordinate {
     override val dimensions: List<Dimension>
-        get() = listOf(X, Y)
+        get() = listOf(TwoD.X, TwoD.Y)
 }
 
-object X : Dimension
-object Y : Dimension
-object Point2D0 : Point {
-    override val values: Map<Dimension, Value<Dimension>>
-        get() = mapOf(X to XValue(0), Y to YValue(0))
+sealed interface TwoD : Dimension {
+    data object X : TwoD
+    data object Y : TwoD
 }
 
-object Point2D1 : Point {
-    override val values: Map<Dimension, Value<*>>
-        get() = mapOf(X to XValue(1), Y to YValue(1))
+object Location2D0 : Location<TwoD> {
+    override val values = listOf(XValue(0), YValue(0))
 }
 
-fun <D : Dimension> point(vararg values: Pair<D, Value<D>>): Point {
-    return object : Point {
-        override val values: Map<Dimension, Value<*>>
-            get() = mapOf(*values)
-    }
-}
-
-class XValue(val d: Int) : Value<X> {
-
-}
-
-class YValue(val d: Int) : Value<Y> {
-
+object Location2D1 : Location<TwoD> {
+    override val values = listOf(XValue(1), YValue(1))
 }
 
 
-object xNotZero : Predicate<X> {
-    override fun test(value: Value<X>): Boolean {
-        return when (value) {
-            is XValue -> value.d != 0
-            else -> error("not support")
+open class NumberValue<T : Number, D : Dimension>(override val dimension: D, val d: T) : Value<D>
+class XValue<T : Number>(n: T) : NumberValue<T, TwoD.X>(TwoD.X, n)
+class YValue<T : Number>(n: T) : NumberValue<T, TwoD.Y>(TwoD.Y, n)
+
+fun <D : Dimension> notZero(): Predicate<D> {
+    return object : Predicate<D> {
+        override fun test(value: Value<D>): Boolean {
+            return when (value.dimension) {
+                is TwoD -> (value as NumberValue<*, D>).d.toInt() != 0
+                else -> false
+            }
         }
-
     }
 }
 
 class CoordinateTest : StringSpec({
     "xy" {
-        val no = object : Selector {
-            override val predicates: Map<Dimension, Predicate<Dimension>>
-                //TODO 如何消除这个警告？
-                get() = mapOf(X to xNotZero as Predicate<Dimension>)
+        val no = object : Selector<TwoD> {
+            override val predicates: List<Predicate<TwoD>> = listOf(notZero<TwoD.X>() as Predicate<TwoD>)
         }
-        no.select(listOf(Point2D0, Point2D1)).shouldHaveSize(1)
+        no.select(listOf(Location2D0, Location2D1)).shouldHaveSize(1)
     }
     "xy more" {
-        val no = object : Selector {
-            override val predicates: Map<Dimension, Predicate<Dimension>>
-                get() = mapOf(X to xNotZero as Predicate<Dimension>)
+        val no = object : Selector<TwoD> {
+            override val predicates: List<Predicate<TwoD>> = listOf(notZero<TwoD.X>() as Predicate<TwoD>)
         }
-        no.select(listOf(Point2D0, Point2D1, object : Point {
-            override val values: Map<Dimension, Value<*>>
-                get() = mapOf(X to XValue(1), Y to YValue(0))
+        no.select(listOf(Location2D0, Location2D1, object : Location<TwoD> {
+            override val values = listOf(XValue(1), YValue(0))
 
         })).shouldHaveSize(2)
     }
