@@ -41,8 +41,21 @@ tasks.test {
 }
 
 publishing {
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/nielinjie/kt-common")
+                credentials {
+                    //properties in file://~/.gradle/gradle.properties
+                    username = project.findProperty("gprUser") as String? ?: System.getenv("GPRUSER")
+                    password = project.findProperty("gprToken") as String? ?: System.getenv("GPRTOKEN")
+                }
+            }
+        }
+    }
     publications {
-        create<MavenPublication>("maven") {
+        register<MavenPublication>("gpr") {
             from(components["java"])
         }
     }
