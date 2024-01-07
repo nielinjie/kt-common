@@ -16,6 +16,9 @@ data class Path(val parts: List<Name>) {
     fun isChildOf(b: Path): Boolean {
         return (this.parts.size == b.parts.size + 1) && this.parts.subList(0, b.parts.size) == b.parts
     }
+    fun isDescendantOf(b:Path):Boolean{
+        return (this.parts.size > b.parts.size) && this.parts.subList(0, b.parts.size) == b.parts
+    }
 
     fun parent() = Path(this.parts.subList(0, this.parts.size - 1))
     fun shortName(): String = parts.last()

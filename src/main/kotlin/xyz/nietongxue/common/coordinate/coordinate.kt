@@ -1,5 +1,8 @@
 package xyz.nietongxue.common.coordinate
 
+import xyz.nietongxue.common.base.Ordered
+import xyz.nietongxue.common.base.Path
+
 
 interface Coordinate {
     val dimensions: List<Dimension>
@@ -35,9 +38,12 @@ interface Predicate {
     val dimension: Dimension
 }
 
+
 open class NumberDimension<T : Number>(val name: String) : Dimension
-open class CategoryDimension<A>(val name: String, val categories:List<A>) : Dimension
-open class SeqDimension<A>(val name: String,val seq:Sequence<A>) : Dimension
+open class CategoryDimension<A : Any>(val name: String, val categories: List<A>) : Dimension
+open class OrderedDimension<A : Any>(val name: String, val ordered: Ordered<A>) : Dimension
+open class PathLikeDimension(val name: String) : Dimension
 
 open class NumberValue<T : Number>(override val dimension: NumberDimension<T>, val d: T) : Value
-open class CategoryValue<A>(override val dimension: CategoryDimension<A>, val d: String) : Value
+open class CategoryValue<A : Any>(override val dimension: CategoryDimension<A>, val d: String) : Value
+open class PathLikeValue(override val dimension: PathLikeDimension, val path: Path) : Value
