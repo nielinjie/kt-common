@@ -27,4 +27,9 @@ class StringTest:StringSpec ({
         "aaabb".aroundBy("aa","bbb").shouldBeNull()
         "aaabb".aroundBy("aaa","bb").shouldBe("")
     }
+    "cases"{
+        "aaBbCc".lowerUnderscore().shouldBe("aa_bb_cc")
+        "aa_bb_cc".lowerUnderscore().shouldBe("aa_bb_cc")
+        "aa_bb_cc dd ee".lowerUnderscore().shouldBe("aa_bb_cc_dd_ee")
+    }
 })

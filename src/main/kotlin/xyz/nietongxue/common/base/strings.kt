@@ -85,3 +85,10 @@ fun String.paired(): String? {
 fun String.ensureEnd(end:String ="\n"):String{
     return if(this.endsWith(end)) this else this+end
 }
+
+fun String.md5(): String {
+    return java.security.MessageDigest.getInstance("MD5")
+        .digest(this.toByteArray())
+        .map { String.format("%02x", it) }
+        .joinToString("")
+}
