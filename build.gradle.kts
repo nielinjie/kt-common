@@ -34,26 +34,39 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation("io.kotest:kotest-framework-engine:5.6.2")
     testImplementation("io.kotest.extensions:kotest-assertions-arrow:1.3.3")
-    testImplementation("io.kotest:kotest-runner-junit5:5.6.2")}
+    testImplementation("io.kotest:kotest-runner-junit5:5.6.2")
+}
 
 tasks.test {
     useJUnitPlatform()
 }
 
 publishing {
-    publishing {
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/nielinjie/kt-common")
-                credentials {
-                    //properties in file://~/.gradle/gradle.properties
-                    username = project.findProperty("gprUser") as String? ?: System.getenv("GPRUSER")
-                    password = project.findProperty("gprToken") as String? ?: System.getenv("GPRTOKEN")
-                }
+    //repository 负责说明发布到哪里
+    //publication 负责说明发布什么
+    //task会生成多个，两者的笛卡尔集。
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/nielinjie/kt-common")
+            credentials {
+                //properties in file://~/.gradle/gradle.properties
+                username = project.findProperty("gprUser") as String? ?: System.getenv("GPRUSER")
+                password = project.findProperty("gprToken") as String? ?: System.getenv("GPRTOKEN")
             }
+
         }
+        maven {
+            name = "AliMaven"
+            credentials {
+                username = project.findProperty("aliMUser") as String? ?: System.getenv("ALIMUSER")
+                password = project.findProperty("aliMPass") as String? ?: System.getenv("ALIMPASS")
+            }
+            url = uri( "https://packages.aliyun.com/maven/repository/2331954-snapshot-Z6hK35/")
+        }
+
     }
+
     publications {
         register<MavenPublication>("gpr") {
             from(components["java"])
