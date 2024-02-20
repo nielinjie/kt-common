@@ -25,7 +25,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
-    //uuid-creator
+
     implementation("io.arrow-kt:arrow-core:1.2.0")
     implementation("net.pearx.kasechange:kasechange-jvm:1.4.1")
     implementation("io.github.encryptorcode:pluralize:1.0.0")
@@ -68,7 +68,7 @@ publishing {
     }
 
     publications {
-        register<MavenPublication>("gpr") {
+        register<MavenPublication>("java") {
             from(components["java"])
         }
     }
