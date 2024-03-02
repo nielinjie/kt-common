@@ -97,14 +97,14 @@ abstract class ValueBasedPredicate:Predicate {
 }
 
 @Serializable
-class CategoryEqualsPredicate(override val dimension: CategoryDimension, val value: String) : ValueBasedPredicate() {
+class CategoryEqPredicate(override val dimension: CategoryDimension, val value: String) : ValueBasedPredicate() {
     override fun test(value: Value): Boolean {
         value as CategoryValue
         return value.d == this.value
     }
 }
 @Serializable
-class OrderedEqualsPredicate(override val dimension: OrderedDimension, val value: String) : ValueBasedPredicate() {
+class OrderedEqPredicate(override val dimension: OrderedDimension, val value: String) : ValueBasedPredicate() {
     override fun test(value: Value): Boolean {
         value as OrderedValue
         return value.d == this.value
