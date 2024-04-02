@@ -19,7 +19,7 @@ repositories {
 }
 kotlin {
     jvm {
-        jvmToolchain(19)
+        jvmToolchain(21)
         withJava()
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
@@ -83,6 +83,7 @@ publishing {
     //repository 负责说明发布到哪里
     //publication 负责说明发布什么
     //task会生成多个，两者的笛卡尔集。
+    //TODO 没有完全对，目前只有publishJvmPublicationToRepsyRepository运行过了，可能publications定义跟kotlin mp 定义的几个publish有冲突。
     repositories {
         maven {
             name = "GitHubPackages"
@@ -102,19 +103,28 @@ publishing {
             }
             url = uri("https://packages.aliyun.com/maven/repository/2331954-snapshot-Z6hK35/")
         }
-
-    }
-
-    publications {
-        register<MavenPublication>("java") {
-            from(components["java"])
+        maven {
+            name= "repsy"
+            credentials {
+                username = project.findProperty("repsyUser") as String? ?: System.getenv("REPSYUSER")
+                password = project.findProperty("repsyToken") as String? ?: System.getenv("REPSYPASS")
+            }
+            url =uri("https://repo.repsy.io/mvn/nielinjie/default")
         }
+
     }
+    //TODO 没有完全对，目前只有publishJvmPublicationToRepsyRepository运行过了，可能publications定义跟kotlin mp 定义的几个publish有冲突。
+
+//    publications {
+//        register<MavenPublication>("java") {
+//            from(components["java"])
+//        }
+//    }
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
-        jvmTarget = "19"
+        jvmTarget = "21"
         freeCompilerArgs += "-Xjsr305=strict"
     }
 }
