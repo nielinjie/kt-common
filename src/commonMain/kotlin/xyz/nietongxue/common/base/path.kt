@@ -18,15 +18,20 @@ data class Path(val parts: List<Name>) {
     fun isChildOf(b: Path): Boolean {
         return (this.parts.size == b.parts.size + 1) && this.parts.subList(0, b.parts.size) == b.parts
     }
-    fun isDescendantOf(b:Path):Boolean{
+
+    fun isDescendantOf(b: Path): Boolean {
         return (this.parts.size > b.parts.size) && this.parts.subList(0, b.parts.size) == b.parts
     }
 
-    fun parent() = Path(this.parts.subList(0, this.parts.size - 1))
+    fun parent(): Path? = if (this.parts.isNotEmpty()) Path(this.parts.subList(0, this.parts.size - 1)) else null
+    fun ancestors(): List<Path> {
+        return parts.indices.map { Path(parts.subList(0, it)) }
+    }
     fun shortName(): String = parts.last()
     fun packageAndName() = PackageAndName(this)
 }
-class PackageAndName(val path: Path){
+
+class PackageAndName(val path: Path) {
     val name = path.shortName()
     val packageName = path.parent()
 }

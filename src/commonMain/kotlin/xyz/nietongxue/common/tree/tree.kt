@@ -5,6 +5,7 @@ import xyz.nietongxue.common.base.Id
 
 class TreeRecord(val id: Id, val parent: Id?)
 
+typealias TreeOf<I> = TreeI<I>
 
 interface TreeI<I> {
     val tree: Tree
@@ -29,7 +30,9 @@ interface TreeI<I> {
 
 interface Tree {
     val records: List<TreeRecord>
-    fun root(): TreeRecord = records.first { it.parent == null }
+    fun root(): TreeRecord {
+        return records.first { it.parent == null }
+    }
 
     //TODO 可以性能优化。不用每次计算全部
     fun children(): Map<Id?, List<TreeRecord>> = records.groupBy { it.parent }
@@ -60,4 +63,22 @@ interface Tree {
     }
 
 
+}
+
+data class TreeNode<D>(
+    val id: Id, val data: D,
+    val children: List<TreeNode<D>>,
+    val parent: Id?
+)
+
+
+fun <D> toTreeNode(tree: Tree, getDataFun: (Id) -> D, currentRecord: TreeRecord = tree.root()): TreeNode<D> {
+    val children = tree.getChildren(currentRecord.id)
+    val chil = children.map {
+        toTreeNode(tree, getDataFun, it)
+    }
+    return TreeNode(
+        currentRecord.id,
+        getDataFun(currentRecord.id), chil, currentRecord.parent
+    )
 }

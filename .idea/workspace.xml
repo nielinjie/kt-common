@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="faa43b69-9342-4b4f-a2c3-d623a8eb8163" name="Changes" comment="mmp">
+      <change afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/pathTree.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/jvmTest/kotlin/xyz/nietongxue/common/base/pathTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/jvmTest/kotlin/xyz/nietongxue/common/base/pathTreeTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/path.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/path.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/tree.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/tree.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +31,17 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="common" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="common" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -91,18 +106,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/nielinjie/Projects/common-kt/src/test/kotlin/xyz/nietongxue/common/processing&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.33697814&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.tools&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build common-kt.executor": "Run",
+    "Gradle.common-kt [:yarnKotlinClean].executor": "Run",
+    "Gradle.common-kt [publishAllPublicationsToRepsyRepository].executor": "Run",
+    "Kotest.PathTest.executor": "Run",
+    "Kotest.PathTest: ancestors.executor": "Run",
+    "Kotest.PathTest: more2.executor": "Run",
+    "Kotest.PathTest: simple (1).executor": "Run",
+    "Kotest.PathTest: simple (2).executor": "Run",
+    "Kotest.PathTest: simple.executor": "Run",
+    "Kotest.PathTreeTest.executor": "Run",
+    "Kotest.PathTreeTest: more (1).executor": "Run",
+    "Kotest.PathTreeTest: more (2).executor": "Run",
+    "Kotest.PathTreeTest: more (3).executor": "Run",
+    "Kotest.PathTreeTest: more.executor": "Run",
+    "Kotest.PathTreeTest: more2.executor": "Run",
+    "Kotest.PathTreeTest: more3 (1).executor": "Run",
+    "Kotest.PathTreeTest: more3 (2).executor": "Run",
+    "Kotest.PathTreeTest: more3.executor": "Run",
+    "Kotest.PathTreeTest: more4.executor": "Run",
+    "Kotest.PathTreeTest: placeHolder for not existed (1).executor": "Debug",
+    "Kotest.PathTreeTest: placeHolder for not existed (2).executor": "Run",
+    "Kotest.PathTreeTest: placeHolder for not existed.executor": "Run",
+    "Kotest.PathTreeTest: simple (1).executor": "Run",
+    "Kotest.PathTreeTest: simple (2).executor": "Run",
+    "Kotest.PathTreeTest: simple.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/nielinjie/Projects/common-kt/src/test/kotlin/xyz/nietongxue/common/processing",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.33697814",
+    "settings.editor.selected.configurable": "configurable.group.tools"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/kotlin/xyz/nietongxue/common/processing" />
@@ -120,126 +161,104 @@
       <recent name="xyz.nietongxue.common.base" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.common-kt [publishJvmPublicationToRepsyRepository]">
-    <configuration name="common-kt [installDist]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="installDist" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="gradle :yarnKotlinClean" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Kotest.PathTest: ancestors">
+    <configuration name="PathTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="common.jvmTest" />
+      <option name="jrePath" value="" />
+      <option name="jrePathEnabled" value="false" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="xyz.nietongxue.common.base.PathTest" />
+      <option name="testPath" value="" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="common-kt [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="jar" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
+    <configuration name="PathTest: ancestors" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="common.jvmTest" />
+      <option name="jrePath" value="" />
+      <option name="jrePathEnabled" value="false" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="xyz.nietongxue.common.base.PathTest" />
+      <option name="testPath" value="ancestors" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="common-kt [jvmJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="jvmJar" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
+    <configuration name="PathTreeTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="common.jvmTest" />
+      <option name="jrePath" value="" />
+      <option name="jrePathEnabled" value="false" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="xyz.nietongxue.common.base.PathTreeTest" />
+      <option name="testPath" value="" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="common-kt [publishJavaPublicationToRepsyRepository]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--stacktrace" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="publishJavaPublicationToRepsyRepository" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
+    <configuration name="PathTreeTest: placeHolder for not existed (1)" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="common.jvmTest" />
+      <option name="jrePath" value="" />
+      <option name="jrePathEnabled" value="false" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="xyz.nietongxue.common.base.PathTreeTest" />
+      <option name="testPath" value="placeHolder for not existed" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="common-kt [publishJvmPublicationToRepsyRepository]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="publishJvmPublicationToRepsyRepository" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
+    <configuration name="PathTreeTest: placeHolder for not existed (2)" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="common.jvmTest" />
+      <option name="jrePath" value="" />
+      <option name="jrePathEnabled" value="false" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="xyz.nietongxue.common.base.PathTreeTest" />
+      <option name="testPath" value="placeHolder for not existed" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.common-kt [publishJvmPublicationToRepsyRepository]" />
-        <item itemvalue="Gradle.common-kt [jar]" />
-        <item itemvalue="Gradle.common-kt [publishJavaPublicationToRepsyRepository]" />
-        <item itemvalue="Gradle.common-kt [installDist]" />
-        <item itemvalue="Gradle.common-kt [jvmJar]" />
+        <item itemvalue="Kotest.PathTest: ancestors" />
+        <item itemvalue="Kotest.PathTest" />
+        <item itemvalue="Kotest.PathTreeTest" />
+        <item itemvalue="Kotest.PathTreeTest: placeHolder for not existed (2)" />
+        <item itemvalue="Kotest.PathTreeTest: placeHolder for not existed (1)" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-3b9f6195" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -394,7 +413,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709384114390</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="mmp">
+      <option name="closed" value="true" />
+      <created>1712019618567</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1712019618568</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
