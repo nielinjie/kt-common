@@ -1,10 +1,15 @@
 package xyz.nietongxue.common.base
 
+interface Change {
+    object Removed : Change
+    object Added : Change
+    object Changed : Change
+}
+
 interface Diff {
     class Removed(val ids: List<Id>) : Diff
     class Added(val ids: List<Id>) : Diff
     class Changed(val ids: List<Id>) : Diff
-
 }
 
 class Diffs(val removed: Diff.Removed, val added: Diff.Added, val changed: Diff.Changed)

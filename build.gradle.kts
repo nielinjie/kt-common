@@ -67,6 +67,8 @@ kotlin {
                 implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
                 implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.3")
                 implementation("io.github.encryptorcode:pluralize:1.0.0")
+                implementation("com.appmattus.crypto:cryptohash:0.10.1")
+
             }
         }
         val jvmTest by getting {
