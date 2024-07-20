@@ -79,3 +79,20 @@ fun String.ensureEnd(end:String ="\n"):String{
     return if(this.endsWith(end)) this else this+end
 }
 
+infix fun String.n(b: String): String {
+    return this + "\n" + b
+}
+
+infix fun String.nn(b: String): String {
+    return this + "\n\n" + b
+}
+
+val List<String>.n: String
+    get() {
+        return this.joinToString("\n")
+    }
+val List<String>.nn: String
+    get() {
+        return this.joinToString("\n\n")
+    }
+

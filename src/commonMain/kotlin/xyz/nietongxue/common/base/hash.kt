@@ -5,7 +5,6 @@ import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.encodeToJsonElement
-import xyz.nietongxue.common.base.Serializing.j
 
 @Serializable
 data class Hash(val hex: String)

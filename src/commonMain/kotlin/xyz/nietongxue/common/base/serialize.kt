@@ -4,7 +4,11 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.plus
 
-object Serializing {
+val globalSerializing = Serializing()
+fun j() = globalSerializing.j()
+
+
+class Serializing() {
     private var serializersModule: SerializersModule? = null
     private var j: Json? = null
     fun plus(module: SerializersModule) {

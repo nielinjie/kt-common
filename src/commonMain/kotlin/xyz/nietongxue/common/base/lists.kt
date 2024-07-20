@@ -3,6 +3,9 @@ package xyz.nietongxue.common.base
 
 typealias CompositedList<A> = List<CompositedListItem<A>>
 
+/*
+把一个list里面相“像”的项合并到一起。
+ */
 interface CompositedListItem<A : Any>
 data class Single<A : Any>(val index: Int, val value: A) : CompositedListItem<A>
 data class Composited<A : Any>(val startIndex: Int) : CompositedListItem<A> {
