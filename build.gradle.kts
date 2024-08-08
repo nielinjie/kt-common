@@ -50,6 +50,9 @@ kotlin {
 
                 implementation("io.arrow-kt:arrow-core:1.2.0")
                 implementation("net.pearx.kasechange:kasechange:1.4.1")
+
+                implementation("com.eygraber:uri-kmp:0.0.18")
+
             }
         }
         val commonTest by getting {

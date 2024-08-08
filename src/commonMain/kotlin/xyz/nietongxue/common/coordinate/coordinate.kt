@@ -2,7 +2,6 @@ package xyz.nietongxue.common.coordinate
 
 import kotlinx.serialization.Serializable
 import xyz.nietongxue.common.base.Name
-import xyz.nietongxue.common.base.Ordered
 import xyz.nietongxue.common.base.Path
 import xyz.nietongxue.common.base.Selector as BaseSelector
 
@@ -13,7 +12,21 @@ interface Coordinate {
 
 interface Location {
     val values: List<Value>
+    val coordinate: Coordinate
+    fun sortedByDimensionsValues(): List<Value> {
+        return coordinate.dimensions.map { dimension ->
+            values.find { it.dimension == dimension } ?: error("dimension not found")
+        }
+    }
+
+    fun validateAt(): Boolean {
+        return coordinate.dimensions.all { dimension ->
+            values.any { it.dimension == dimension }
+        }
+    }
+
 }
+
 
 interface Selector : BaseSelector<Location, Any> {
     val predicates: List<Predicate>
@@ -36,7 +49,7 @@ interface Selector : BaseSelector<Location, Any> {
 }
 
 @Serializable
-open class PredicatesSelector(override val predicates: List<ValueBasedPredicate> ) : Selector
+open class PredicatesSelector(override val predicates: List<ValueBasedPredicate>) : Selector
 
 fun Selector.and(b: Selector): Selector {
     return object : Selector {
@@ -50,7 +63,32 @@ interface Dimension {
 
 interface Value {
     val dimension: Dimension
+
+    companion object {
+        fun fromString(coordinate: Coordinate, string: String) {
+            val dimensionName = string.substringBefore("_")
+            val value = string.substringAfter("_")
+            val dimension = coordinate.dimensions.find { it.name == dimensionName } ?: error("dimension not found")
+            when (dimension) {
+                is CategoryDimension -> CategoryValue(dimension, value)
+                is OrderedDimension -> OrderedValue(dimension, value)
+                is PathLikeDimension -> PathLikeValue(dimension, Path.fromString(value))
+                is NumberDimension<*> -> error("not implemented")
+            }
+        }
+    }
 }
+
+fun Value.valueString(): String {
+    return when (this) {
+        is CategoryValue -> this.d
+        is OrderedValue -> this.d
+        is PathLikeValue -> this.path.asString()
+        is NumberValue<*> -> this.d.toString()
+        else -> error("unknown value type")
+    }
+}
+
 
 interface Predicate {
     fun test(value: Value): Boolean
@@ -73,6 +111,7 @@ fun List<Predicate>.selector(): Selector {
 @Serializable
 open class NumberDimension<T : Number>(override val name: String) : Dimension
 
+
 @Serializable
 open class CategoryDimension(override val name: String, val categories: List<String>) : Dimension
 
@@ -84,16 +123,18 @@ open class PathLikeDimension(override val name: String) : Dimension
 
 @Serializable
 open class NumberValue<T : Number>(override val dimension: NumberDimension<T>, val d: T) : Value
+
 @Serializable
 open class CategoryValue(override val dimension: CategoryDimension, val d: String) : Value
 
 @Serializable
 open class OrderedValue(override val dimension: OrderedDimension, val d: String) : Value
+
 @Serializable
 open class PathLikeValue(override val dimension: PathLikeDimension, val path: Path) : Value
 
 @Serializable
-abstract class ValueBasedPredicate:Predicate {
+abstract class ValueBasedPredicate : Predicate {
 }
 
 @Serializable
@@ -103,6 +144,7 @@ class CategoryEqPredicate(override val dimension: CategoryDimension, val value: 
         return value.d == this.value
     }
 }
+
 @Serializable
 class OrderedEqPredicate(override val dimension: OrderedDimension, val value: String) : ValueBasedPredicate() {
     override fun test(value: Value): Boolean {
@@ -110,6 +152,7 @@ class OrderedEqPredicate(override val dimension: OrderedDimension, val value: St
         return value.d == this.value
     }
 }
+
 @Serializable
 class OrderedLEPredicate(override val dimension: OrderedDimension, val value: String) : ValueBasedPredicate() {
     override fun test(value: Value): Boolean {
@@ -119,7 +162,7 @@ class OrderedLEPredicate(override val dimension: OrderedDimension, val value: St
 }
 
 
-fun  CategoryValue.match(f: (String, String) -> Boolean): Predicate {
+fun CategoryValue.match(f: (String, String) -> Boolean): Predicate {
     return object : Predicate {
         override fun test(value: Value): Boolean {
             value as CategoryValue
@@ -131,8 +174,10 @@ fun  CategoryValue.match(f: (String, String) -> Boolean): Predicate {
     }
 }
 
-fun  CategoryValue.matchEq(): Predicate {
+fun CategoryValue.matchEq(): Predicate {
     return match { a1: String, a2: String -> a1 == a2 }
 }
+
+
 
 
