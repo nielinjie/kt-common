@@ -59,6 +59,15 @@ open class ListPersistence<T>(val file: Uri, val serializer: KSerializer<T>) {
         withList { it.remove(item) }
     }
 
+    fun remove(item: T, idGetter: IdGetter<T>) {
+        withList {
+            val index = it.indexOfFirst { idGetter(it) == idGetter(item) }
+            if (index != -1) {
+                it.removeAt(index)
+            }
+        }
+    }
+
     fun add(item: T) {
         withList { it.add(item) }
     }

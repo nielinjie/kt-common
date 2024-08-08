@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="faa43b69-9342-4b4f-a2c3-d623a8eb8163" name="Changes" comment="minor features">
-      <change afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/persistence/json.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/jsMain/kotlin/xyz/nietongxue/common/persistence/json.js.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/xyz/nietongxue/common/persistence/json.jvm.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/common_js_1_0_SNAPSHOT.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/common_js_1_0_SNAPSHOT.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/common_jvm_1_0_SNAPSHOT.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/common_jvm_1_0_SNAPSHOT.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/path.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/path.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/coordinate/coordinate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/coordinate/coordinate.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/persistence/json.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/persistence/json.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +93,9 @@
   </component>
   <component name="KotlinCodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -327,7 +323,7 @@
       <workItem from="1722417568829" duration="2215000" />
       <workItem from="1722833814881" duration="292000" />
       <workItem from="1723017947353" duration="1143000" />
-      <workItem from="1723020565411" duration="3717000" />
+      <workItem from="1723020565411" duration="4030000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -505,7 +501,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721470830238</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="minor features">
+      <option name="closed" value="true" />
+      <created>1723085439222</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1723085439222</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
