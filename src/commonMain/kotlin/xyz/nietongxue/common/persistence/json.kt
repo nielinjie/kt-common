@@ -5,6 +5,7 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.jsonArray
+import xyz.nietongxue.common.base.Id
 import xyz.nietongxue.common.base.IdGetter
 
 expect fun writeToPath(path: Uri, content: String)
@@ -68,6 +69,15 @@ open class ListPersistence<T>(val file: Uri, val serializer: KSerializer<T>) {
         }
     }
 
+    fun removeById(id: Id, idGetter: IdGetter<T>) {
+        withList {
+            val index = it.indexOfFirst { idGetter(it) == id }
+            if (index != -1) {
+                it.removeAt(index)
+            }
+        }
+    }
+
     fun add(item: T) {
         withList { it.add(item) }
     }
@@ -75,6 +85,17 @@ open class ListPersistence<T>(val file: Uri, val serializer: KSerializer<T>) {
     fun withList(block: (MutableList<T>) -> Unit) {
         lock.lock()
         block(list)
+        save()
+        lock.unlock()
+    }
+
+    fun withMutableMap(idGetter: IdGetter<T>, block: (MutableMap<Id, T>) -> Unit) {
+        lock.lock()
+        val map = list.associateBy { idGetter(it)!! }.toMutableMap()
+        block(map)
+        val newList = map.values.toList()
+        list.clear()
+        list.addAll(newList)
         save()
         lock.unlock()
     }

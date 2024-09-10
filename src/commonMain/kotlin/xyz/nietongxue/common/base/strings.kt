@@ -4,8 +4,6 @@ import net.pearx.kasechange.CaseFormat
 import net.pearx.kasechange.toCase
 
 
-
-
 fun String.capitalizedCamel(): String {
     return this.toCase(CaseFormat.CAPITALIZED_CAMEL)
 }
@@ -13,6 +11,7 @@ fun String.capitalizedCamel(): String {
 fun String.camel(): String {
     return this.toCase(CaseFormat.CAMEL)
 }
+
 fun String.lowerUnderscore(): String {
     return this.toCase(CaseFormat.LOWER_UNDERSCORE)
 }
@@ -20,11 +19,13 @@ fun String.lowerUnderscore(): String {
 fun String.minusAtEnd(s: String): String {
     return this.substring(0, this.length - s.length)
 }
+
 fun String.byMinus(): String? {
     return if (this.endsWith("-")) {
         this.substring(0, this.length - 1)
     } else null
 }
+
 fun String.minusAtStart(s: String): String {
     return this.substring(s.length, this.length)
 }
@@ -40,16 +41,18 @@ fun String.atMost(n: Int): String {
         this.take(n) + "..."
     } else this
 }
+
 fun String.atMostMiddle(n: Int): String {
     return if (this.length > n) {
-        val half = (n-3) / 2
+        val half = (n - 3) / 2
         this.take(half) + "..." + this.takeLast(half)
     } else this
 }
-fun String.atMostStart(n:Int):String{
-    return if(this.length>n){
+
+fun String.atMostStart(n: Int): String {
+    return if (this.length > n) {
         "..." + this.takeLast(n)
-    }else this
+    } else this
 }
 
 fun String.startBy(s: String): String? {
@@ -64,6 +67,10 @@ fun String.aroundBy(s: String, s2: String = s.paired() ?: error("can not auto pa
     else null
 }
 
+fun String.wrapBy(s: String, s2: String = s.paired() ?: error("can not auto paired")): String {
+    return s + this + s2
+}
+
 fun String.paired(): String? {
     return when (this) {
         "<" -> ">"
@@ -71,12 +78,17 @@ fun String.paired(): String? {
         "{" -> "}"
         "[" -> "]"
         "(" -> ")"
-        "<<"-> ">>"
+        "<<" -> ">>"
+        "'" -> "'"
+        "（" -> "）"
+        "【" -> "】"
+        "《" -> "》"
         else -> null
     }
 }
-fun String.ensureEnd(end:String ="\n"):String{
-    return if(this.endsWith(end)) this else this+end
+
+fun String.ensureEnd(end: String = "\n"): String {
+    return if (this.endsWith(end)) this else this + end
 }
 
 infix fun String.n(b: String): String {
@@ -85,6 +97,18 @@ infix fun String.n(b: String): String {
 
 infix fun String.nn(b: String): String {
     return this + "\n\n" + b
+}
+
+infix fun String.t(b: String): String {
+    return this + "\t" + b
+}
+
+infix fun String.d(b: String): String {
+    return "$this - $b"
+}
+
+infix fun String.d(any: Any): String {
+    return this d any.toString()
 }
 
 val List<String>.n: String
@@ -96,3 +120,8 @@ val List<String>.nn: String
         return this.joinToString("\n\n")
     }
 
+fun String.cList(): List<String> {
+    val delimiters = listOf("、", "，", " ", ",") //TODO 考虑混合情况
+    val results = delimiters.map { this.split(it).map { it.trim() } }
+    return results.maxBy { it.size }
+}

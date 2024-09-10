@@ -12,14 +12,14 @@ plugins {
 }
 
 group = "xyz.nietongxue"
-version = "1.0-SNAPSHOT"
+version = "1.0"
 
 repositories {
     mavenCentral()
 }
 kotlin {
     jvm {
-        jvmToolchain(21)
+        jvmToolchain(17)
         withJava()
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
@@ -71,6 +71,8 @@ kotlin {
                 implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.3")
                 implementation("io.github.encryptorcode:pluralize:1.0.0")
                 implementation("com.appmattus.crypto:cryptohash:0.10.1")
+
+                implementation("jakarta.annotation:jakarta.annotation-api:3.0.0")
 
             }
         }
@@ -129,7 +131,7 @@ publishing {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
-        jvmTarget = "21"
+        jvmTarget = "17"
         freeCompilerArgs += "-Xjsr305=strict"
     }
 }

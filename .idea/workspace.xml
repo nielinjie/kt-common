@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="faa43b69-9342-4b4f-a2c3-d623a8eb8163" name="Changes" comment="minor features">
+      <change afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/boolean.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/xyz/nietongxue/common/persistence/fileTree.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/xyz/nietongxue/common/persistence/persistence.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/strings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/strings.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/persistence/json.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/persistence/json.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +36,11 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="common" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="common" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -90,6 +100,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.9.20/e986a95d49898518c4e736748455e3eacddb2e7e/kotlin-stdlib-1.9.20-sources.jar!/commonMain/kotlin/collections/Collections.kt" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.9.23/a1ef32fd0bf9dea1798a1e22a1ef914707931b24/kotlin-stdlib-1.9.23-sources.jar!/jvmMain/jdk7/kotlin/io/path/PathReadWrite.kt" root0="SKIP_INSPECTION" />
   </component>
   <component name="KotlinCodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
@@ -147,7 +158,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/nielinjie/Projects/common-kt/src/commonMain/kotlin/xyz/nietongxue/common/persistence&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/nielinjie/Projects/common-kt/src/jvmMain/kotlin/xyz/nietongxue/common&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -162,18 +173,18 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/jvmMain/kotlin/xyz/nietongxue/common" />
       <recent name="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/persistence" />
       <recent name="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base" />
       <recent name="$PROJECT_DIR$/src/test/kotlin/xyz/nietongxue/common/processing" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/xyz/nietongxue/common/base" />
-      <recent name="$PROJECT_DIR$/src/main/kotlin/xyz/nietongxue/common/tree" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/jvmMain/kotlin/xyz/nietongxue/common/persistence" />
       <recent name="$PROJECT_DIR$/src/jvmMain/kotlin/xyz/nietongxue/common/base" />
       <recent name="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base" />
       <recent name="$PROJECT_DIR$/src/jvmMain/kotlin" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/xyz/nietongxue/common/graph" />
-      <recent name="$PROJECT_DIR$/src/main/kotlin/xyz/nietongxue/common" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="xyz.nietongxue.common.base" />
@@ -186,7 +197,7 @@
       <command value="gradle publishToMavenLocal" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.common-kt [publishToMavenLocal]">
+  <component name="RunManager" selected="Gradle.common-kt [publishAllPublicationsToRepsyRepository]">
     <configuration name="common-kt [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -199,6 +210,28 @@
         <option name="taskNames">
           <list>
             <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="common-kt [publishAllPublicationsToRepsyRepository]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publishAllPublicationsToRepsyRepository" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -253,21 +286,6 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="PathTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="common.jvmTest" />
-      <option name="jrePath" value="" />
-      <option name="jrePathEnabled" value="false" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="xyz.nietongxue.common.base.PathTest" />
-      <option name="testPath" value="" />
-      <option name="packageName" value="" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="PathTreeTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
       <module name="common.jvmTest" />
       <option name="jrePath" value="" />
@@ -285,21 +303,13 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.common-kt [publishAllPublicationsToRepsyRepository]" />
         <item itemvalue="Gradle.common-kt [publishToMavenLocal]" />
         <item itemvalue="Gradle.common-kt [publishJvmPublicationToMavenLocal]" />
         <item itemvalue="Gradle.common-kt [clean]" />
         <item itemvalue="Kotest.PathTreeTest" />
-        <item itemvalue="Kotest.PathTest" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -323,7 +333,12 @@
       <workItem from="1722417568829" duration="2215000" />
       <workItem from="1722833814881" duration="292000" />
       <workItem from="1723017947353" duration="1143000" />
-      <workItem from="1723020565411" duration="4030000" />
+      <workItem from="1723020565411" duration="4058000" />
+      <workItem from="1723255816252" duration="17018000" />
+      <workItem from="1724748732916" duration="9934000" />
+      <workItem from="1724938658964" duration="700000" />
+      <workItem from="1724994084555" duration="2392000" />
+      <workItem from="1725952222880" duration="790000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -509,7 +524,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723085439222</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="minor features">
+      <option name="closed" value="true" />
+      <created>1723085665491</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1723085665491</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
