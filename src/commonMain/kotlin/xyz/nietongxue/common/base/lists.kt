@@ -49,3 +49,13 @@ fun <A : Any> com(list: List<Int>, valueList: List<A>): List<CompositedListItem<
     }
     return re
 }
+
+fun <T> List<T>.findAndModify(findFn:(T)->Boolean,modifyFn:(T)->T):List<T>{
+    return this.map {
+        if(findFn(it)){
+            modifyFn(it)
+        }else{
+            it
+        }
+    }
+}

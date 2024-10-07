@@ -44,6 +44,31 @@ fun <L, E, A> resultAndLog(a: A, log: L): Processing<L, E, A> = listOf(log) to a
 fun <L, E, A> errorAndLog(e: E, log: L): Processing<L, E, A> = listOf(log) to (e).nel().left()
 fun <L, E, A> justError(e: E): Processing<L, E, A> = emptyList<L>() to e.nel().left()
 
+
+fun <L, E, A> List<Processing<L, E, A>>.flatten(): Processing<L, E, List<A>> {
+    return this.fold(bind(emptyList<A>())) { acc, p ->
+        acc.flatMap { l: List<A> ->
+            val (logs, either) = p
+            when (either) {
+                is Either.Left -> (acc.first + logs) to either
+                is Either.Right -> (acc.first + logs) to (l + either.value).right()
+            }
+        }
+    }
+}
+fun <L,E,A> List<Processing<L,E,List<A>>>.flatten2(): Processing<L,E,List<A>> {
+    return this.fold(bind(emptyList<A>())) { acc, p ->
+        acc.flatMap { l: List<A> ->
+            val (logs, either) = p
+            when (either) {
+                is Either.Left -> (acc.first + logs) to either
+                is Either.Right -> (acc.first + logs) to (l + either.value).right()
+            }
+        }
+    }
+}
+
+
 class ProcessingScope<L, E, A>() {
     var current = bind<L, E, A>(null as A)
     fun log(log: L): Unit {

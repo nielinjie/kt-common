@@ -11,17 +11,19 @@ object XYCoordinate : Coordinate {
         get() = listOf(TwoD.X, TwoD.Y)
 }
 
-sealed interface TwoD  {
+sealed interface TwoD {
     object X : NumberDimension<Int>("x")
     object Y : NumberDimension<Int>("y")
 }
 
 object Location2D0 : Location {
     override val values = listOf(XValue(0), YValue(0))
+    override val coordinate = XYCoordinate
 }
 
 object Location2D1 : Location {
     override val values = listOf(XValue(1), YValue(1))
+    override val coordinate = XYCoordinate
 }
 
 
@@ -55,18 +57,19 @@ class CoordinateTest : StringSpec({
         }
         no.select(listOf(Location2D0, Location2D1, object : Location {
             override val values = listOf(XValue(1), YValue(0))
+            override val coordinate = XYCoordinate
 
         })).shouldHaveSize(2)
     }
 })
 
 
-class OrderedTest:StringSpec({
-  "ordered per" {
-      val d = OrderedDimension("d", listOf("a", "b", "c"))
-      val p = OrderedLEPredicate(d,"b")
-      p.test(OrderedValue(d, "b")).shouldBeTrue()
-      p.test(OrderedValue(d, "a")).shouldBeTrue()
-      p.test(OrderedValue(d, "c")).shouldBeFalse()
-  }
+class OrderedTest : StringSpec({
+    "ordered per" {
+        val d = OrderedDimension("d", listOf("a", "b", "c"))
+        val p = OrderedLEPredicate(d, "b")
+        p.test(OrderedValue(d, "b")).shouldBeTrue()
+        p.test(OrderedValue(d, "a")).shouldBeTrue()
+        p.test(OrderedValue(d, "c")).shouldBeFalse()
+    }
 })
