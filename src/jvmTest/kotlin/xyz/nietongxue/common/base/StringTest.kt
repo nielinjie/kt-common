@@ -32,4 +32,14 @@ class StringTest:StringSpec ({
         "aa_bb_cc".lowerUnderscore().shouldBe("aa_bb_cc")
         "aa_bb_cc dd ee".lowerUnderscore().shouldBe("aa_bb_cc_dd_ee")
     }
+    "clist"{
+        "a,A,1,一,正,正面".cList().shouldBe(listOf("a","A","1","一","正","正面"))
+        "a,A,1 一,正,正面".cList().shouldBe(listOf("a","A","1","一","正","正面"))
+        "a,A 1，一,正,正面".cList().shouldBe(listOf("a","A","1","一","正","正面"))
+        "a A 1，一,正,正面".cList().shouldBe(listOf("a","A","1","一","正","正面"))
+        "a A 1、一,正,正面".cList().shouldBe(listOf("a","A","1","一","正","正面"))
+        "a A 1、一,正\n正面".cList().shouldBe(listOf("a","A","1","一","正","正面"))
+        "a A 1、一\t 正\n正面".cList().shouldBe(listOf("a","A","1","一","正","正面"))
+        "、a A 1、一\t 正\n正面".cList().shouldBe(listOf("a","A","1","一","正","正面"))
+    }
 })

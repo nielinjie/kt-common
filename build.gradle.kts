@@ -63,7 +63,7 @@ kotlin {
             }
         }
         val jvmMain by getting {
-            dependencies{
+            dependencies {
 
                 implementation("com.fasterxml.jackson.core:jackson-core:2.15.3")
                 implementation("com.fasterxml.jackson.core:jackson-databind:2.15.3")
@@ -73,12 +73,15 @@ kotlin {
                 implementation("com.appmattus.crypto:cryptohash:0.10.1")
 
                 implementation("jakarta.annotation:jakarta.annotation-api:3.0.0")
-
+                implementation("com.jayway.jsonpath:json-path:2.9.0")
             }
         }
         val jvmTest by getting {
             dependencies {
                 implementation("io.kotest:kotest-runner-junit5:5.6.2")
+                implementation("org.assertj:assertj-core:3.21.0")
+                implementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
+                implementation("org.junit.jupiter:junit-jupiter:5.9.1")
             }
         }
     }
@@ -111,12 +114,12 @@ publishing {
             url = uri("https://packages.aliyun.com/maven/repository/2331954-snapshot-Z6hK35/")
         }
         maven {
-            name= "repsy"
+            name = "repsy"
             credentials {
                 username = project.findProperty("repsyUser") as String? ?: System.getenv("REPSYUSER")
                 password = project.findProperty("repsyToken") as String? ?: System.getenv("REPSYPASS")
             }
-            url =uri("https://repo.repsy.io/mvn/nielinjie/default")
+            url = uri("https://repo.repsy.io/mvn/nielinjie/default")
         }
 
     }
@@ -134,4 +137,8 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "17"
         freeCompilerArgs += "-Xjsr305=strict"
     }
+}
+tasks.test {
+
+    useJUnitPlatform()
 }
