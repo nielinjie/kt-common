@@ -10,6 +10,7 @@ import com.jayway.jsonpath.spi.json.JacksonJsonNodeJsonProvider
 import com.jayway.jsonpath.spi.json.JsonProvider
 import com.jayway.jsonpath.spi.mapper.JacksonMappingProvider
 import com.jayway.jsonpath.spi.mapper.MappingProvider
+import org.slf4j.LoggerFactory
 import java.util.*
 
 
@@ -35,8 +36,8 @@ class JPathConfig {
 }
 
 sealed interface JPathNode {
-    class NameNode(val name: String) : JPathNode
-    class IndexNode(val index: Int) : JPathNode
+    data class NameNode(val name: String) : JPathNode
+    data class IndexNode(val index: Int) : JPathNode
 }
 
 
@@ -48,14 +49,28 @@ fun <T> ObjectNode.read(jpath: JPath, clazz: Class<T>): T {
     return jpath.read(JsonPath.parse(this), clazz)
 }
 
-class JPath(val parts: List<JPathNode>) {
 
+/*
+JPath 主要用于 setting。不支持通配符、查询等。
+读取的话，用 JsonPath 。
+*/
+data class JPath(val parts: List<JPathNode>) {
+    val logger = LoggerFactory.getLogger(JPath::class.java)
     fun append(node: JPathNode): JPath {
         return JPath(parts + node)
     }
 
-    fun read(json: ObjectNode): JsonNode {
+    fun read(json: JsonNode): JsonNode {
         return read(JsonPath.parse(json))
+    }
+
+    fun readSilently(json: JsonNode, default: JsonNode? = null): JsonNode? {
+        return try {
+            read(json)
+        } catch (e: PathNotFoundException) {
+            logger.trace("Path not found: {}", this)
+            default
+        }
     }
 
     fun read(json: DocumentContext): JsonNode {
@@ -76,6 +91,9 @@ class JPath(val parts: List<JPathNode>) {
     }
 
     fun set(json: ObjectNode, value: Any): ObjectNode {
+        if (isRoot()) {
+            return (value as ObjectNode).deepCopy()
+        }
         val doc = JsonPath.parse(json)
         set(doc, value)
         return (doc.json() as ObjectNode).deepCopy()
@@ -113,14 +131,14 @@ class JPath(val parts: List<JPathNode>) {
         }
     }
 
-    fun defaultParentValue(node: JPathNode): Any {
+    private fun defaultParentValue(node: JPathNode): Any {
         return when (node) {
             is JPathNode.NameNode -> ObjectNode(JsonNodeFactory.instance)
             is JPathNode.IndexNode -> ArrayNode(JsonNodeFactory.instance)
         }
     }
 
-    fun defaultSiblingValue(value: Any): Any {
+    private fun defaultSiblingValue(value: Any): Any {
         return when (value) {
             is Map<*, *> -> ObjectNode(JsonNodeFactory.instance)
             is List<*> -> ArrayNode(JsonNodeFactory.instance)
@@ -162,7 +180,20 @@ class JPath(val parts: List<JPathNode>) {
 
     }
 
+    fun concrete(): Boolean {
+        return parts.all {
+            when (it) {
+                is JPathNode.NameNode -> it.name.isNotEmpty()
+                        && it.name.isNotBlank()
+                        && (listOf("[", "]", ".", "'", "@", "(", ")", "*").none { s -> s in it.name })
+
+                is JPathNode.IndexNode -> it.index >= 0
+            }
+        }
+    }
+
     companion object {
+
         private var useDefaultConfig: JPathConfig? = null
         private fun String.toJPathNode(): JPathNode {
             return this.toIntOrNull()?.let {
@@ -174,7 +205,7 @@ class JPath(val parts: List<JPathNode>) {
             }
         }
 
-        private fun parse(path: String): JPath {
+        private fun parseInternal(path: String): JPath {
             val regexNode = """\[(.+?)]""".toRegex()
             val pathParts = regexNode.findAll(path)
                 .map { it.groupValues[1] }.toList()
@@ -182,23 +213,53 @@ class JPath(val parts: List<JPathNode>) {
         }
 
         fun parse(jsonPath: JsonPath): JPath {
-            return parse(jsonPath.path)
+            return parseInternal(jsonPath.path).let {
+                if (it.concrete()) {
+                    it
+                } else {
+                    error("Invalid path: ${jsonPath.path}")
+                }
+            }
         }
+
+        fun parse(whole: String): JPath {
+            return parse(JsonPath.compile(whole))
+        }
+
+        fun parse(whole: List<String>): JPath {
+            return parse(
+                JsonPath.compile(
+                    if (whole.firstOrNull() != "$") {
+                        "$."
+                    } else {
+                        ""
+                    } + whole.joinToString(".")
+                )
+            )
+        }
+
+        fun parse(whole: Array<String>): JPath {
+            return parse(whole.toList())
+        }
+
 
         fun useDefaultConfig() {
             if (useDefaultConfig == null) {
                 useDefaultConfig = JPathConfig()
             }
         }
+
     }
 
 }
 
-fun ObjectNode.listNormalizedPaths(paths: List<String>): List<JPath> {
+fun ObjectNode.concretePaths(paths: List<JsonPath>): List<JPath> {
     val config = Configuration.defaultConfiguration().addOptions(Option.AS_PATH_LIST)
-
     return paths.map {
         (JsonPath.using(config).parse(this).read(it) as ArrayNode).toList()
-    }.flatten().map { JPath.parse(JsonPath.compile(it.textValue())) }
-
+    }.flatten().map { JPath.parse(it.textValue()) }
 }
+
+//fun ObjectNode.concretePaths(paths: List<String>): List<JPath> {
+//    return this.concretePaths(paths.map { JsonPath.compile(it) })
+//}

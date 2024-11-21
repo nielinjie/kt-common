@@ -118,7 +118,7 @@ class JsonPathTest {
                 ]
             }
         """.trimIndent()
-        val jpaths = (jacksonObjectMapper().readTree(json) as ObjectNode).listNormalizedPaths(listOf(path))
+        val jpaths = (jacksonObjectMapper().readTree(json) as ObjectNode).concretePaths(listOf(JsonPath.compile(path)))
         jpaths.also {
             it.onEach {
                 println(it.toJsonPath())

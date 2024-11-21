@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "xyz.nietongxue"
-version = "1.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -74,7 +74,7 @@ kotlin {
 
                 implementation("jakarta.annotation:jakarta.annotation-api:3.0.0")
                 implementation("com.jayway.jsonpath:json-path:2.9.0")
-            }
+                implementation("org.slf4j:slf4j-api:2.1.0-alpha1")            }
         }
         val jvmTest by getting {
             dependencies {
