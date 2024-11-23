@@ -10,6 +10,7 @@ import com.jayway.jsonpath.spi.json.JacksonJsonNodeJsonProvider
 import com.jayway.jsonpath.spi.json.JsonProvider
 import com.jayway.jsonpath.spi.mapper.JacksonMappingProvider
 import com.jayway.jsonpath.spi.mapper.MappingProvider
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.*
 
@@ -253,10 +254,12 @@ data class JPath(val parts: List<JPathNode>) {
 
 }
 
-fun ObjectNode.concretePaths(paths: List<JsonPath>): List<JPath> {
+fun ObjectNode.concretePaths(paths: List<JsonPath>, logger: Logger? = null): List<JPath> {
     val config = Configuration.defaultConfiguration().addOptions(Option.AS_PATH_LIST)
     return paths.map {
-        (JsonPath.using(config).parse(this).read(it) as ArrayNode).toList()
+        runCatching { (JsonPath.using(config).parse(this).read(it) as ArrayNode) }.onFailure {
+            logger?.error("Error when concretePaths:  $it")
+        }.getOrNull()?.toList() ?: emptyList()
     }.flatten().map { JPath.parse(it.textValue()) }
 }
 
