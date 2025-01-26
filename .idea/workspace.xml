@@ -4,15 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faa43b69-9342-4b4f-a2c3-d623a8eb8163" name="Changes" comment="1.0&#10;downgrade to jdk 17">
-      <change afterPath="$PROJECT_DIR$/src/jvmMain/kotlin/xyz/nietongxue/common/jpath/jpath.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/jvmTest/kotlin/xyz/nietongxue/common/jpath/jPathTest.kt" afterDir="false" />
+    <list default="true" id="faa43b69-9342-4b4f-a2c3-d623a8eb8163" name="Changes" comment="jpath's concretePaths debug.">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_js_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_js_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_js_1_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_js_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_js_2_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_jvm_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_jvm_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_jvm_1_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_jvm_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_jvm_2_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/ExternalTree.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/matcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/matcher.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/strings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/strings.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/json/objects.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/json/objects.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jvmTest/kotlin/xyz/nietongxue/common/base/StringTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/jvmTest/kotlin/xyz/nietongxue/common/base/StringTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/pathTree.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/tree.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/tree.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,74 +137,75 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build common-kt.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JsonPathTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JsonPathTest.nomalize.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JsonPathTest.parseToJPath.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JsonPathTest.testToken.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Upgrade Gradle wrapper.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.common-kt [:yarnKotlinClean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.common-kt [allTests].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.common-kt [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.common-kt [jvmTest].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.common-kt [publishAllPublicationsToRepsyRepository].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.common-kt [publishJvmPublicationToMavenLocal].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.common-kt [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.common-kt [test].executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.FPathTest.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.FPathTest: splitTo3.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.IdTest.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTest.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTest: ancestors.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTest: more2.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTest: simple (1).executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTest: simple (2).executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTest: simple.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: more (1).executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: more (2).executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: more (3).executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: more.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: more2.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: more3 (1).executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: more3 (2).executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: more3.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: more4.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: placeHolder for not existed (1).executor&quot;: &quot;Debug&quot;,
-    &quot;Kotest.PathTreeTest: placeHolder for not existed (2).executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: placeHolder for not existed.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: simple (1).executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: simple (2).executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.PathTreeTest: simple.executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.StringTest: clist (1).executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.StringTest: clist (2).executor&quot;: &quot;Run&quot;,
-    &quot;Kotest.StringTest: clist.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/nielinjie/Projects/common-kt/src/jvmTest/kotlin/xyz/nietongxue/common/jpath&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.33697814&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.tools&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build common-kt.executor": "Run",
+    "Gradle.JsonPathTest.executor": "Run",
+    "Gradle.JsonPathTest.nomalize.executor": "Run",
+    "Gradle.JsonPathTest.parseToJPath.executor": "Run",
+    "Gradle.JsonPathTest.testToken.executor": "Run",
+    "Gradle.Upgrade Gradle wrapper.executor": "Run",
+    "Gradle.common-kt [:yarnKotlinClean].executor": "Run",
+    "Gradle.common-kt [allTests].executor": "Run",
+    "Gradle.common-kt [clean].executor": "Run",
+    "Gradle.common-kt [jvmTest].executor": "Run",
+    "Gradle.common-kt [publishAllPublicationsToRepsyRepository].executor": "Run",
+    "Gradle.common-kt [publishJvmPublicationToMavenLocal].executor": "Run",
+    "Gradle.common-kt [publishToMavenLocal].executor": "Run",
+    "Gradle.common-kt [test].executor": "Run",
+    "Kotest.FPathTest.executor": "Run",
+    "Kotest.FPathTest: splitTo3.executor": "Run",
+    "Kotest.IdTest.executor": "Run",
+    "Kotest.PathTest.executor": "Run",
+    "Kotest.PathTest: ancestors.executor": "Run",
+    "Kotest.PathTest: more2.executor": "Run",
+    "Kotest.PathTest: simple (1).executor": "Run",
+    "Kotest.PathTest: simple (2).executor": "Run",
+    "Kotest.PathTest: simple.executor": "Run",
+    "Kotest.PathTreeTest.executor": "Run",
+    "Kotest.PathTreeTest: more (1).executor": "Run",
+    "Kotest.PathTreeTest: more (2).executor": "Run",
+    "Kotest.PathTreeTest: more (3).executor": "Run",
+    "Kotest.PathTreeTest: more.executor": "Run",
+    "Kotest.PathTreeTest: more2.executor": "Run",
+    "Kotest.PathTreeTest: more3 (1).executor": "Run",
+    "Kotest.PathTreeTest: more3 (2).executor": "Run",
+    "Kotest.PathTreeTest: more3.executor": "Run",
+    "Kotest.PathTreeTest: more4.executor": "Run",
+    "Kotest.PathTreeTest: placeHolder for not existed (1).executor": "Debug",
+    "Kotest.PathTreeTest: placeHolder for not existed (2).executor": "Run",
+    "Kotest.PathTreeTest: placeHolder for not existed.executor": "Run",
+    "Kotest.PathTreeTest: simple (1).executor": "Run",
+    "Kotest.PathTreeTest: simple (2).executor": "Run",
+    "Kotest.PathTreeTest: simple.executor": "Run",
+    "Kotest.StringTest: clist (1).executor": "Run",
+    "Kotest.StringTest: clist (2).executor": "Run",
+    "Kotest.StringTest: clist.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/nielinjie/Projects/common-kt/src/commonMain/kotlin/xyz/nietongxue/common/tree",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.33697814",
+    "settings.editor.selected.configurable": "configurable.group.tools",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree" />
       <recent name="$PROJECT_DIR$/src/jvmTest/kotlin/xyz/nietongxue/common/jpath" />
       <recent name="$PROJECT_DIR$/src/jvmMain/kotlin/xyz/nietongxue/common/jpath" />
       <recent name="$PROJECT_DIR$/src/jvmMain/kotlin/xyz/nietongxue/common" />
       <recent name="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/persistence" />
-      <recent name="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/jvmMain/kotlin/xyz/nietongxue/common/persistence" />
@@ -213,12 +222,12 @@
     <option name="myCommands">
       <command value="gradle :yarnKotlinClean" />
       <command value="gradle publishJvmPublicationToMavenLocal" />
-      <command value="gradle publishAllPublicationsToRepsyRepository" />
       <command value="gradle publishToMavenLocal" />
+      <command value="gradle publishAllPublicationsToRepsyRepository" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.common-kt [publishToMavenLocal]">
-    <configuration name="JsonPathTest.nomalize" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.common-kt [publishAllPublicationsToRepsyRepository]">
+    <configuration name="common-kt [publishAllPublicationsToRepsyRepository]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -229,17 +238,15 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":cleanJvmTest" />
-            <option value=":jvmTest" />
-            <option value="--tests &quot;xyz.nietongxue.common.jpath.JsonPathTest.nomalize&quot;" />
+            <option value="publishAllPublicationsToRepsyRepository" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="common-kt [publishToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -311,21 +318,13 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.common-kt [publishToMavenLocal]" />
+        <item itemvalue="Gradle.common-kt [publishAllPublicationsToRepsyRepository]" />
         <item itemvalue="Kotest.StringTest: clist (2)" />
         <item itemvalue="Kotest.StringTest: clist (1)" />
         <item itemvalue="Kotest.StringTest: clist" />
-        <item itemvalue="Gradle.JsonPathTest.nomalize" />
-        <item itemvalue="Gradle.common-kt [publishToMavenLocal]" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -378,7 +377,27 @@
       <workItem from="1730538909294" duration="316000" />
       <workItem from="1730539474966" duration="1391000" />
       <workItem from="1730797499284" duration="6809000" />
-      <workItem from="1730967640208" duration="2307000" />
+      <workItem from="1730967640208" duration="2530000" />
+      <workItem from="1731246245536" duration="3331000" />
+      <workItem from="1731633823682" duration="1884000" />
+      <workItem from="1731636169311" duration="862000" />
+      <workItem from="1731637296520" duration="7942000" />
+      <workItem from="1731757935485" duration="647000" />
+      <workItem from="1731849140351" duration="5144000" />
+      <workItem from="1732189902937" duration="1906000" />
+      <workItem from="1732370396653" duration="2898000" />
+      <workItem from="1732584154977" duration="1604000" />
+      <workItem from="1732687942074" duration="857000" />
+      <workItem from="1733973071713" duration="171000" />
+      <workItem from="1733973420740" duration="3085000" />
+      <workItem from="1734317967134" duration="7444000" />
+      <workItem from="1734488233139" duration="614000" />
+      <workItem from="1735628670300" duration="631000" />
+      <workItem from="1735815541251" duration="771000" />
+      <workItem from="1736231931434" duration="123000" />
+      <workItem from="1737539161988" duration="135000" />
+      <workItem from="1737539298867" duration="5017000" />
+      <workItem from="1737855892427" duration="3726000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -580,7 +599,31 @@
       <option name="project" value="LOCAL" />
       <updated>1725954503053</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="jpath and matcher's">
+      <option name="closed" value="true" />
+      <created>1731033322139</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1731033322139</updated>
+    </task>
+    <task id="LOCAL-00027" summary="jpath and matcher's">
+      <option name="closed" value="true" />
+      <created>1732194928549</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1732194928549</updated>
+    </task>
+    <task id="LOCAL-00028" summary="jpath's concretePaths debug.">
+      <option name="closed" value="true" />
+      <created>1732376094563</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1732376094563</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -616,7 +659,9 @@
     <MESSAGE value="hash and serialize." />
     <MESSAGE value="minor features" />
     <MESSAGE value="1.0&#10;downgrade to jdk 17" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.0&#10;downgrade to jdk 17" />
+    <MESSAGE value="jpath and matcher's" />
+    <MESSAGE value="jpath's concretePaths debug." />
+    <option name="LAST_COMMIT_MESSAGE" value="jpath's concretePaths debug." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

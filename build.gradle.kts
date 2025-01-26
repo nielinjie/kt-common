@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "xyz.nietongxue"
-version = "1.0.2"
+version = "2.0.0"
 
 repositories {
     mavenCentral()

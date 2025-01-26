@@ -1,84 +1,115 @@
 package xyz.nietongxue.common.tree
 
-import xyz.nietongxue.common.base.Id
 
-
-class TreeRecord(val id: Id, val parent: Id?)
-
-typealias TreeOf<I> = TreeI<I>
-
-interface TreeI<I> {
-    val tree: Tree
-    fun getById(id: Id): I?
-    fun root(): I? = getById(tree.root().id)
-    fun getChild(id: Id): List<I> {
-        return tree.getChildren(id).map { getById(it.id)!! }
+interface Tree<T> {
+    val root: T
+    fun children(node: T): List<T>
+    fun nodeAndChildren(): List<Pair<T, List<T>>> {
+        return this.nodeC()
     }
 
-    fun getDescendants(id: Id): List<I> {
-        return tree.getDescendants(id).map { getById(it.id)!! }
+    fun nodeAndChild(): List<Pair<T, T>> {
+        return this.nodeC().flatMap { p: Pair<T, List<T>> -> p.second.map { Pair(p.first, it) } }
     }
 
-    fun getAncestors(id: Id): List<I> {
-        return tree.getAncestors(id).map { getById(it.id)!! }
+    fun bfs(): List<T> {
+        return this.nodeAndChild().map { listOf(it.first, it.second) }.flatten().distinct()
     }
 
-    fun getLeaves(): List<I> {
-        return tree.getLeaves().map { getById(it.id)!! }
+    private fun nodeC(parent: T = root): List<Pair<T, List<T>>> {
+        val children = children(parent)
+        val list: MutableList<Pair<T, List<T>>> = ArrayList()
+        if (children.isNotEmpty()) {
+            list.add(parent to children)
+            list.addAll(children.map { nodeC(it) }.flatten())
+        }
+        return list
+    }
+
+    fun parent(node: T): T? {
+        if (node == root) {
+            return null
+        }
+        return this.nodeAndChild().firstOrNull { it.second == node }?.first
+    }
+
+    fun ancestor(node: T): List<T> {
+        if (node == root) {
+            return emptyList()
+        }
+        val parent: T = this.parent(node)!!
+        return listOf(parent) + (this.ancestor(parent))
+    }
+
+    fun level(node: T): Int {
+        return this.ancestor(node).size
     }
 }
 
-interface Tree {
-    val records: List<TreeRecord>
-    fun root(): TreeRecord {
-        return records.first { it.parent == null }
+interface AddableTree<T> : Tree<T> {
+    fun add(node: T, child: T) {
+        this.add(node, listOf(child))
     }
 
-    //TODO 可以性能优化。不用每次计算全部
-    fun children(): Map<Id?, List<TreeRecord>> = records.groupBy { it.parent }
-    fun getChildren(id: Id): List<TreeRecord> {
-        return children().get(id) ?: emptyList()
+    fun add(node: T, children: List<T>)
+    fun add(node: T, subTree: Tree<T>) {
+        this.add(node, subTree.root)
+        subTree.nodeAndChildren().forEach {
+            this.add(it.first, it.second)
+        }
     }
-
-    fun getDescendants(id: Id): List<TreeRecord> {
-        return getChildren(id).flatMap { listOf(it) + getDescendants(it.id) }
-    }
-
-    fun getAncestors(id: Id): List<TreeRecord> {
-        val parent = records.first { it.id == id }.parent
-        return if (parent == null) emptyList() else listOf(records.first { it.id == parent }) + getAncestors(parent)
-    }
-
-
-    fun getLeaves(): List<TreeRecord> {
-        return records.filter { getChildren(it.id).isEmpty() }
-    }
-
-    fun getDepth(id: Id): Int {
-        return getAncestors(id).size
-    }
-
-    fun getDepth(): Int {
-        return records.map { getDepth(it.id) }.max()
-    }
-
-
 }
 
-data class TreeNode<D>(
-    val id: Id, val data: D,
-    val children: List<TreeNode<D>>,
-    val parent: Id?
-)
-
-
-fun <D> toTreeNode(tree: Tree, getDataFun: (Id) -> D, currentRecord: TreeRecord = tree.root()): TreeNode<D> {
-    val children = tree.getChildren(currentRecord.id)
-    val chil = children.map {
-        toTreeNode(tree, getDataFun, it)
+interface MutableTree<T> : AddableTree<T> {
+    fun remove(node: T)
+    fun move(node: T, newParent: T) {
+        this.remove(node)
+        this.add(newParent, node)
     }
-    return TreeNode(
-        currentRecord.id,
-        getDataFun(currentRecord.id), chil, currentRecord.parent
-    )
+}
+
+/**
+ * 一个简单的树，用 map 存储结构。
+ */
+open class SimpleTree<T>(override val root: T) : AddableTree<T> {
+    private var parentToChildren = mutableMapOf<T, MutableList<T>>()
+    override fun add(node: T, children: List<T>) {
+        val cr = parentToChildren.getOrPut(node) { mutableListOf() }
+        cr.addAll(children)
+    }
+
+    override fun children(node: T): List<T> {
+        return this.parentToChildren[node] ?: emptyList()
+    }
+
+    companion object {
+        fun <T> fromNodePairs(pairs: List<Pair<T, T>>): SimpleTree<T> {
+            val root: T = findRoot(pairs)
+            val re = SimpleTree(root)
+            pairs.forEach {
+                re.add(it.first, it.second)
+            }
+            return re
+        }
+
+        fun <T> findRoot(pairs: List<Pair<T, T>>): T {
+            val nodes = pairs.map { listOf(it.first, it.second) }.flatten().distinct()
+            val hasParentNodes: List<T> = pairs.map { it.second }
+            return nodes.find { !hasParentNodes.contains(it) } ?: throw IllegalArgumentException("no root find")
+        }
+    }
+}
+
+fun <T, U> mapTree(a: Tree<T>, mapFun: (T) -> U): Tree<U> {
+    val aRoot = a.root
+    val bRoot = mapFun(aRoot)
+    val nodeCache: MutableMap<T, U> = mutableMapOf(aRoot to bRoot)
+    val re = SimpleTree(bRoot)
+    a.nodeAndChild().forEach { (p, c) ->
+        val bp = nodeCache[p] ?: throw IllegalStateException("not parent mapped value find")
+        val bc = mapFun(c)
+        nodeCache[c] = bc
+        re.add(bp, bc)
+    }
+    return re
 }
