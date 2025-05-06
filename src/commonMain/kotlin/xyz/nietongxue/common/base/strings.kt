@@ -121,7 +121,7 @@ val List<String>.nn: String
     }
 
 fun String.cList(): List<String> {
-//    val delimiters = listOf("、", "，", " ", ",") //TODO 考虑混合情况
+//    val delimiters = listOf("、", "，", " ", ",")
     val delimiters = Regex("[、，,\\s]+")
     val results = this.split(delimiters).map { it.trim() }
     return results.filter { it.isNotEmpty() }

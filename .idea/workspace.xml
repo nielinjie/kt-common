@@ -4,23 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="faa43b69-9342-4b4f-a2c3-d623a8eb8163" name="Changes" comment="jpath's concretePaths debug.">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_js_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_js_1_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_js_1_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_js_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_js_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_jvm_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_jvm_1_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_jvm_1_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_jvm_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/common_jvm_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/ExternalTree.kt" afterDir="false" />
+    <list default="true" id="faa43b69-9342-4b4f-a2c3-d623a8eb8163" name="Changes" comment="a simple tree interface">
+      <change afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/depends/depends.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/treeBlock.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/jvmTest/kotlin/xyz/nietongxue/common/depends/DependsTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/jvmTest/kotlin/xyz/nietongxue/common/depends/testDepends.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/jvmTest/kotlin/xyz/nietongxue/common/depends/testWhoDependOnMe.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/common_js_2_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/common_js_2_0_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/common_jvm_2_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/common_jvm_2_0_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/pathTree.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/tree.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/tree.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/strings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/base/strings.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/ExternalTree.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/commonMain/kotlin/xyz/nietongxue/common/tree/external.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmTest/kotlin/xyz/nietongxue/common/base/pathTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jvmTest/kotlin/xyz/nietongxue/common/base/pathTreeTest.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +50,7 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="common" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="verification" type="c8890929:TasksNode$1" />
+                <item name="publishing" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -112,13 +108,13 @@
     &quot;accountId&quot;: &quot;059b2fab-cb62-4f2c-92a0-6a95ddcd1385&quot;
   }
 }</component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.9.20/e986a95d49898518c4e736748455e3eacddb2e7e/kotlin-stdlib-1.9.20-sources.jar!/commonMain/kotlin/collections/Collections.kt" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.9.23/a1ef32fd0bf9dea1798a1e22a1ef914707931b24/kotlin-stdlib-1.9.23-sources.jar!/jvmMain/jdk7/kotlin/io/path/PathReadWrite.kt" root0="SKIP_INSPECTION" />
-  </component>
   <component name="KotlinCodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -129,7 +125,7 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2WyUehCtSAmB5OXCQmp3ozjQmEc" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -140,11 +136,20 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build common-kt.executor": "Run",
+    "Gradle.DependsTest.executor": "Run",
+    "Gradle.DependsTest.testMultiDependency (1).executor": "Run",
+    "Gradle.DependsTest.testMultiDependency.executor": "Run",
+    "Gradle.DependsTest.testMultiDependencyNotInAll (1).executor": "Run",
+    "Gradle.DependsTest.testMultiDependencyNotInAll.executor": "Run",
     "Gradle.JsonPathTest.executor": "Run",
     "Gradle.JsonPathTest.nomalize.executor": "Run",
     "Gradle.JsonPathTest.parseToJPath.executor": "Run",
     "Gradle.JsonPathTest.testToken.executor": "Run",
+    "Gradle.TestDepends.test.executor": "Run",
+    "Gradle.TestDepends.test2.executor": "Run",
     "Gradle.Upgrade Gradle wrapper.executor": "Run",
+    "Gradle.WhoDependOnMeTest.executor": "Run",
+    "Gradle.WhoDependOnMeTest.testMultiDependents.executor": "Run",
     "Gradle.common-kt [:yarnKotlinClean].executor": "Run",
     "Gradle.common-kt [allTests].executor": "Run",
     "Gradle.common-kt [clean].executor": "Run",
@@ -153,6 +158,7 @@
     "Gradle.common-kt [publishJvmPublicationToMavenLocal].executor": "Run",
     "Gradle.common-kt [publishToMavenLocal].executor": "Run",
     "Gradle.common-kt [test].executor": "Run",
+    "Gradle.depends [jvm].executor": "Run",
     "Kotest.FPathTest.executor": "Run",
     "Kotest.FPathTest: splitTo3.executor": "Run",
     "Kotest.IdTest.executor": "Run",
@@ -183,6 +189,7 @@
     "Kotest.StringTest: clist.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
@@ -217,6 +224,9 @@
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="xyz.nietongxue.common.base" />
     </key>
+    <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="xyz.nietongxue.common.depends" />
+    </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -226,8 +236,8 @@
       <command value="gradle publishAllPublicationsToRepsyRepository" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.common-kt [publishAllPublicationsToRepsyRepository]">
-    <configuration name="common-kt [publishAllPublicationsToRepsyRepository]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.WhoDependOnMeTest.testMultiDependents">
+    <configuration name="DependsTest.testMultiDependency" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -238,18 +248,20 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="publishAllPublicationsToRepsyRepository" />
+            <option value=":cleanJvmTest" />
+            <option value=":jvmTest" />
+            <option value="--tests &quot;xyz.nietongxue.common.depends.DependsTest.testMultiDependency&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="common-kt [publishToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DependsTest.testMultiDependencyNotInAll" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -260,71 +272,84 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="publishToMavenLocal" />
+            <option value=":cleanJvmTest" />
+            <option value=":jvmTest" />
+            <option value="--tests &quot;xyz.nietongxue.common.depends.DependsTest.testMultiDependencyNotInAll&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="StringTest: clist (1)" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="common.jvmTest" />
-      <option name="jrePath" value="" />
-      <option name="jrePathEnabled" value="false" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="xyz.nietongxue.common.base.StringTest" />
-      <option name="testPath" value="clist" />
-      <option name="packageName" value="" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="WhoDependOnMeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanJvmTest" />
+            <option value=":jvmTest" />
+            <option value="--tests &quot;xyz.nietongxue.common.depends.WhoDependOnMeTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="StringTest: clist (2)" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="common.jvmTest" />
-      <option name="jrePath" value="" />
-      <option name="jrePathEnabled" value="false" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="xyz.nietongxue.common.base.StringTest" />
-      <option name="testPath" value="clist" />
-      <option name="packageName" value="" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StringTest: clist" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="common.jvmTest" />
-      <option name="jrePath" value="" />
-      <option name="jrePathEnabled" value="false" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="xyz.nietongxue.common.base.StringTest" />
-      <option name="testPath" value="clist" />
-      <option name="packageName" value="" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="WhoDependOnMeTest.testMultiDependents" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanJvmTest" />
+            <option value=":jvmTest" />
+            <option value="--tests &quot;xyz.nietongxue.common.depends.WhoDependOnMeTest.testMultiDependents&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.common-kt [publishToMavenLocal]" />
-        <item itemvalue="Gradle.common-kt [publishAllPublicationsToRepsyRepository]" />
-        <item itemvalue="Kotest.StringTest: clist (2)" />
-        <item itemvalue="Kotest.StringTest: clist (1)" />
-        <item itemvalue="Kotest.StringTest: clist" />
+        <item itemvalue="Gradle.WhoDependOnMeTest.testMultiDependents" />
+        <item itemvalue="Gradle.DependsTest.testMultiDependencyNotInAll (1)" />
+        <item itemvalue="Gradle.DependsTest.testMultiDependencyNotInAll (1)" />
+        <item itemvalue="Gradle.DependsTest.testMultiDependencyNotInAll (1)" />
+        <item itemvalue="Gradle.DependsTest.testMultiDependencyNotInAll (1)" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -397,7 +422,25 @@
       <workItem from="1736231931434" duration="123000" />
       <workItem from="1737539161988" duration="135000" />
       <workItem from="1737539298867" duration="5017000" />
-      <workItem from="1737855892427" duration="3726000" />
+      <workItem from="1737855892427" duration="5160000" />
+      <workItem from="1737862344557" duration="5427000" />
+      <workItem from="1737958200340" duration="4086000" />
+      <workItem from="1738501733092" duration="8904000" />
+      <workItem from="1738889909142" duration="537000" />
+      <workItem from="1738890874857" duration="580000" />
+      <workItem from="1739859657077" duration="173000" />
+      <workItem from="1740390523655" duration="4260000" />
+      <workItem from="1740562646656" duration="2377000" />
+      <workItem from="1740622132409" duration="136000" />
+      <workItem from="1740622279469" duration="2084000" />
+      <workItem from="1740646858906" duration="1297000" />
+      <workItem from="1742260968875" duration="1941000" />
+      <workItem from="1742733075868" duration="33000" />
+      <workItem from="1743168436340" duration="1791000" />
+      <workItem from="1743406645481" duration="798000" />
+      <workItem from="1745636010922" duration="4679000" />
+      <workItem from="1746436053341" duration="1335000" />
+      <workItem from="1746520788521" duration="2865000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -623,7 +666,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732376094563</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="a simple tree interface">
+      <option name="closed" value="true" />
+      <created>1737859694570</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1737859694570</updated>
+    </task>
+    <task id="LOCAL-00030" summary="a simple tree interface">
+      <option name="closed" value="true" />
+      <created>1737859724305</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1737859724305</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,7 +720,8 @@
     <MESSAGE value="1.0&#10;downgrade to jdk 17" />
     <MESSAGE value="jpath and matcher's" />
     <MESSAGE value="jpath's concretePaths debug." />
-    <option name="LAST_COMMIT_MESSAGE" value="jpath's concretePaths debug." />
+    <MESSAGE value="a simple tree interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="a simple tree interface" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
